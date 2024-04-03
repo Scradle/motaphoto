@@ -1,31 +1,68 @@
-/*Local fonts*/
+/*Local fonts************************************************************************/
 @font-face {
   font-family: "Space Mono";
-  src: url("fonts/SpaceMono-Regular.woff2") format("woff2");
+  src: url("../fonts/SpaceMono-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: "Space Mono";
-  src: url("fonts/SpaceMono-Italic.woff2") format("woff2");
+  src: url("../fonts/SpaceMono-Italic.woff2") format("woff2");
   font-weight: 400;
   font-style: italic;
 }
 @font-face {
   font-family: "Space Mono";
-  src: url("fonts/SpaceMono-Bold.woff2") format("woff2");
+  src: url("../fonts/SpaceMono-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
 }
 @font-face {
   font-family: "Space Mono";
-  src: url("fonts/SpaceMono-BoldItalic.woff2") format("woff2");
+  src: url("../fonts/SpaceMono-BoldItalic.woff2") format("woff2");
   font-weight: 400;
   font-style: italic;
 }
 @font-face {
   font-family: "Poppins";
-  src: url("fonts/Poppins-Regular.woff2") format("woff2");
+  src: url("../fonts/Poppins-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
+}
+/*variables*****************************************************************************/
+/*body**********************************************************************************/
+body * {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  max-width: 1440px;
+  min-width: 300px;
+  margin: 0 auto;
+}
+body .site-header .site-branding {
+  display: flex;
+  justify-content: space-around;
+  height: 80px;
+}
+body .site-header .site-branding .logo {
+  height: 18%;
+  padding-top: 25px;
+}
+body .site-header .site-branding .main-navigation .menu-header-menu-container ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  gap: 50px;
+}
+body .site-header .site-branding .main-navigation .menu-header-menu-container ul li {
+  font-family: "Space Mono";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  color: #000000;
+}
+body .site-header .site-branding .main-navigation .menu-header-menu-container ul li:hover {
+  font-weight: 700;
 }/*# sourceMappingURL=custom-style.css.map */

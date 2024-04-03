@@ -1,32 +1,87 @@
-/*Local fonts*/
+/*Local fonts************************************************************************/
 
 @font-face {
     font-family: 'Space Mono';
-    src: url('fonts/SpaceMono-Regular.woff2') format('woff2');
+    src: url('../fonts/SpaceMono-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
 }
 @font-face {
     font-family: 'Space Mono';
-    src: url('fonts/SpaceMono-Italic.woff2') format('woff2');
+    src: url('../fonts/SpaceMono-Italic.woff2') format('woff2');
     font-weight: 400;
     font-style: italic;
 }
 @font-face {
     font-family: 'Space Mono';
-    src: url('fonts/SpaceMono-Bold.woff2') format('woff2');
+    src: url('../fonts/SpaceMono-Bold.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
 }
 @font-face {
     font-family: 'Space Mono';
-    src: url('fonts/SpaceMono-BoldItalic.woff2') format('woff2');
+    src: url('../fonts/SpaceMono-BoldItalic.woff2') format('woff2');
     font-weight: 400;
     font-style: italic;
 }
 @font-face {
     font-family: 'Poppins';
-    src: url('fonts/Poppins-Regular.woff2') format('woff2');
+    src: url('../fonts/Poppins-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
+}
+
+/*variables*****************************************************************************/
+
+$color__black:#000000;
+$color__dark-blue: #313144;
+$color__dark-grey: #C4C4C4;
+$color__grey: #D8D8D8;
+$color__light-grey: #E5E5E5;
+$color__red: #E00000;
+$color__light-red: #FE5858;
+$color__lighter-red: #FFD6D6;
+
+/*body**********************************************************************************/
+
+body * {
+    text-decoration: none;
+    color: inherit;
+}
+ 
+body {
+    max-width: 1440px;
+    min-width: 300px;
+    margin: 0 auto;
+    .site-header {
+        .site-branding{
+            display: flex;
+            justify-content: space-around;
+            height: 80px;
+            .logo {
+                height: 18%;
+                padding-top: 25px;
+            }
+            .main-navigation {
+                .menu-header-menu-container {
+                    ul {
+                        list-style: none;
+                        display: flex;
+                        justify-content: space-around;
+                        gap: 50px;
+                        li {
+                            font-family: 'Space Mono';
+                            font-size: 16px;
+                            font-style: normal;
+                            font-weight: 400;
+                            color: $color__black;
+                        }
+                        li:hover {
+                            font-weight: 700;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
