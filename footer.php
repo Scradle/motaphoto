@@ -3,8 +3,10 @@
 <footer id="colophon" class="site-footer">
     <div class="site-info">
         <?php
-        /* translators: %s: WordPress name and link */
-        printf( esc_html__( 'Proudly powered by %s', 'mon-theme' ), '<a href="' . esc_url( __( 'https://wordpress.org/', 'mon-theme' ) ) . '">WordPress</a>' );
+            wp_nav_menu( array(
+                'theme_location' => 'menu-secondaire',
+                'menu_id'        => 'footer-menu',
+            ) );
         ?>
     </div><!-- .site-info -->
 </footer><!-- #colophon -->

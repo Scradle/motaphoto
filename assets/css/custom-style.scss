@@ -47,6 +47,7 @@ $color__lighter-red: #FFD6D6;
 body * {
     text-decoration: none;
     color: inherit;
+    list-style: none;
 }
  
 body {
@@ -65,7 +66,6 @@ body {
             .main-navigation {
                 .menu-header-menu-container {
                     ul {
-                        list-style: none;
                         display: flex;
                         justify-content: space-around;
                         gap: 50px;
@@ -79,6 +79,29 @@ body {
                         li:hover {
                             font-weight: 700;
                         }
+                    }
+                }
+            }
+        }
+    } 
+    //header
+    .site-footer {
+        border-top: 1px solid $color__black;
+        .site-info {
+            .menu-footer-menu-container {
+                ul {
+                    display: flex;
+                    justify-content: center;
+                    gap:10%;
+                    li {
+                        font-family: 'Space Mono';
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 400;
+                        color: $color__black;
+                    }
+                    li:hover {
+                        font-weight: 700;
                     }
                 }
             }
