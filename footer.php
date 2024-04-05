@@ -9,6 +9,7 @@
             ) );
         ?>
     </div><!-- .site-info -->
+    <?php get_template_part( 'templates-parts/contact-modal' ); ?><!-- intégration modale de contact -->
 </footer><!-- #colophon -->
 
 <?php wp_footer(); ?>

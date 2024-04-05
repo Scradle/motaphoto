@@ -41,6 +41,28 @@ $color__light-grey: #E5E5E5;
 $color__red: #E00000;
 $color__light-red: #FE5858;
 $color__lighter-red: #FFD6D6;
+$color__white: #ffffff;
+
+/*animations*****************************************************************************/
+
+/* Animation de fondu pour apparaître */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+/* Animation de fondu pour disparaître */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
 
 /*body**********************************************************************************/
 
@@ -83,8 +105,7 @@ body {
                 }
             }
         }
-    } 
-    //header
+    }// header
     .site-footer {
         border-top: 1px solid $color__black;
         .site-info {
@@ -106,5 +127,93 @@ body {
                 }
             }
         }
-    }
-}
+        .contact-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); 
+            animation: fadeIn 1s ease-in-out forwards;
+            .modal-content {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                border: 3px solid $color__black;
+                max-width: 600px;
+                overflow: hidden;
+                background-color: $color__white;
+                .contact-header-modal {
+                    justify-content: center;
+                    display: flex;
+                    padding-top: 4%;
+                }
+                .contact-form-modal {
+                    display: flex;
+                    justify-content: center;
+                    padding: 4%;
+                    .wpcf7.js {
+                        font-family: 'Poppins';
+                        font-size: 12px;
+                        font-weight: 500;
+                        line-height: 18px;
+                        text-align: left;
+                    }
+                    .wpcf7-form input[type="text"],
+                    .wpcf7-form input[type="email"],
+                    .wpcf7-form textarea {
+                        box-sizing: border-box;
+                        border-radius: 6px;
+                        border: 1px solid $color__dark-grey;
+                        resize: none;
+                        margin: 10px 0 20px 0;
+                        position: relative;
+                        z-index: 2;
+                        font-family: 'Poppins';
+                        font-size: 16px;
+                        font-weight: 400;
+                        line-height: 18px;
+                    }
+                    .wpcf7-form input[type="text"],
+                    .wpcf7-form input[type="email"] {
+                        height: 40px;
+                        width: 250px;
+                    }
+                    .wpcf7-form textarea {
+                        height: 260px;
+                        width: 250px;
+                    }
+                    .wpcf7-form input[type="submit"] {
+                        background-color: $color__grey;
+                        font-family: Space Mono;
+                        font-size: 12px;
+                        font-weight: 400;
+                        line-height: 17.77px;
+                        color: $color__black;
+                        border: none;
+                        border-radius: 4px;
+                        cursor: pointer;
+                        height: 50px;
+                        width: 100%;
+                        z-index: 3;
+                        position: relative;
+                        transition: background-color 1s ease;
+                        text-align: center;
+                    }
+                    .wpcf7-form input[type="submit"]:hover {
+                        background-color: $color__black;
+                        color: $color__white;
+                    }                    
+                }// formulaire
+            }
+        }
+        .contact-modal.fadeOut {
+            animation: fadeOut 1s ease-in-out forwards; // Animation pour fermeture en fade out 
+        }
+    }// footer
+}// body
+
+

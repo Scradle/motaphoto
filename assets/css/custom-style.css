@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*Local fonts************************************************************************/
 @font-face {
   font-family: "Space Mono";
@@ -30,6 +31,25 @@
   font-style: normal;
 }
 /*variables*****************************************************************************/
+/*animations*****************************************************************************/
+/* Animation de fondu pour apparaître */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* Animation de fondu pour disparaître */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
 /*body**********************************************************************************/
 body * {
   text-decoration: none;
@@ -83,4 +103,90 @@ body .site-footer .site-info .menu-footer-menu-container ul li {
 }
 body .site-footer .site-info .menu-footer-menu-container ul li:hover {
   font-weight: 700;
+}
+body .site-footer .contact-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  animation: fadeIn 1s ease-in-out forwards;
+}
+body .site-footer .contact-modal .modal-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 3px solid #000000;
+  max-width: 600px;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+body .site-footer .contact-modal .modal-content .contact-header-modal {
+  justify-content: center;
+  display: flex;
+  padding-top: 4%;
+}
+body .site-footer .contact-modal .modal-content .contact-form-modal {
+  display: flex;
+  justify-content: center;
+  padding: 4%;
+}
+body .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7.js {
+  font-family: "Poppins";
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  text-align: left;
+}
+body .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7-form input[type=text],
+body .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7-form input[type=email],
+body .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7-form textarea {
+  box-sizing: border-box;
+  border-radius: 6px;
+  border: 1px solid #C4C4C4;
+  resize: none;
+  margin: 10px 0 20px 0;
+  position: relative;
+  z-index: 2;
+  font-family: "Poppins";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 18px;
+}
+body .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7-form input[type=text],
+body .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7-form input[type=email] {
+  height: 40px;
+  width: 250px;
+}
+body .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7-form textarea {
+  height: 260px;
+  width: 250px;
+}
+body .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7-form input[type=submit] {
+  background-color: #D8D8D8;
+  font-family: Space Mono;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 17.77px;
+  color: #000000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 50px;
+  width: 100%;
+  z-index: 3;
+  position: relative;
+  transition: background-color 1s ease;
+  text-align: center;
+}
+body .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7-form input[type=submit]:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+body .site-footer .contact-modal.fadeOut {
+  animation: fadeOut 1s ease-in-out forwards;
 }/*# sourceMappingURL=custom-style.css.map */
