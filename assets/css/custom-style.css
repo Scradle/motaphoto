@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /*Local fonts************************************************************************/
 @font-face {
   font-family: "Space Mono";
@@ -32,7 +31,6 @@
 }
 /*variables*****************************************************************************/
 /*animations*****************************************************************************/
-/* Animation de fondu pour apparaître */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -41,7 +39,6 @@
     opacity: 1;
   }
 }
-/* Animation de fondu pour disparaître */
 @keyframes fadeOut {
   from {
     opacity: 1;
@@ -69,12 +66,13 @@ body .site-header .site-branding {
 }
 body .site-header .site-branding .logo {
   height: 18%;
-  padding-top: 25px;
+  padding-top: 35px;
 }
 body .site-header .site-branding .main-navigation .menu-header-menu-container ul {
   display: flex;
   justify-content: space-around;
   gap: 50px;
+  padding-top: 15px;
 }
 body .site-header .site-branding .main-navigation .menu-header-menu-container ul li {
   font-family: "Space Mono";
@@ -85,6 +83,39 @@ body .site-header .site-branding .main-navigation .menu-header-menu-container ul
 }
 body .site-header .site-branding .main-navigation .menu-header-menu-container ul li:hover {
   font-weight: 700;
+}
+body .site-content .content-area .site-main .home-hero {
+  max-width: 1440px;
+  position: relative;
+  justify-content: center;
+  display: flex;
+}
+body .site-content .content-area .site-main .home-hero img {
+  max-width: inherit;
+}
+body .site-content .content-area .site-main .home-hero h1 {
+  position: absolute;
+  z-index: 2;
+  top: 32%;
+  font-family: Space Mono;
+  font-size: 96px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 142.18px;
+  color: transparent;
+  -webkit-text-stroke: 3px #ffffff;
+}
+body .site-content .content-area .site-main .single-photo {
+  display: flex;
+}
+body .site-content .content-area .site-main .single-photo .single-photo-txt {
+  width: 100%;
+}
+body .site-content .content-area .site-main .single-photo .single-photo-img img {
+  width: 100%;
+  height: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 body .site-footer {
   border-top: 1px solid #000000;
@@ -112,7 +143,7 @@ body .site-footer .contact-modal {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.8);
   animation: fadeIn 1s ease-in-out forwards;
 }
 body .site-footer .contact-modal .modal-content {

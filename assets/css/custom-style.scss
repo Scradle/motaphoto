@@ -45,7 +45,7 @@ $color__white: #ffffff;
 
 /*animations*****************************************************************************/
 
-/* Animation de fondu pour apparaître */
+// Animation de fondu pour apparaître 
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -54,7 +54,7 @@ $color__white: #ffffff;
         opacity: 1;
     }
 }
-/* Animation de fondu pour disparaître */
+// Animation de fondu pour disparaître 
 @keyframes fadeOut {
     from {
         opacity: 1;
@@ -76,6 +76,7 @@ body {
     max-width: 1440px;
     min-width: 300px;
     margin: 0 auto;
+    //header.php
     .site-header {
         .site-branding{
             display: flex;
@@ -83,7 +84,7 @@ body {
             height: 80px;
             .logo {
                 height: 18%;
-                padding-top: 25px;
+                padding-top: 35px;
             }
             .main-navigation {
                 .menu-header-menu-container {
@@ -91,6 +92,7 @@ body {
                         display: flex;
                         justify-content: space-around;
                         gap: 50px;
+                        padding-top: 15px;
                         li {
                             font-family: 'Space Mono';
                             font-size: 16px;
@@ -106,6 +108,49 @@ body {
             }
         }
     }// header
+    .site-content {
+        .content-area {
+            .site-main {
+                //home-template.php
+                .home-hero {
+                    max-width: 1440px;
+                    position: relative;
+                    justify-content: center;
+                    display: flex;
+                    img {
+                        max-width: inherit;
+                    }
+                    h1 {
+                        position: absolute;
+                        z-index: 2;
+                        top: 32%;
+                        font-family: Space Mono;
+                        font-size: 96px;
+                        font-style: italic;
+                        font-weight: 700;
+                        line-height: 142.18px;
+                        color: transparent;
+                        -webkit-text-stroke: 3px $color__white;
+                    }
+                }
+                .single-photo {
+                    display: flex;
+
+                    .single-photo-txt {
+                        width: 100%;
+                    }
+                    .single-photo-img {
+                        img {
+                        width: 100%;
+                        height: auto;
+                        object-fit: contain;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    //footer.php
     .site-footer {
         border-top: 1px solid $color__black;
         .site-info {
@@ -127,6 +172,7 @@ body {
                 }
             }
         }
+        //contact-modal.php
         .contact-modal {
             display: none;
             position: fixed;
@@ -135,7 +181,7 @@ body {
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.6); 
+            background-color: rgba(0, 0, 0, 0.8); 
             animation: fadeIn 1s ease-in-out forwards;
             .modal-content {
                 position: fixed;
@@ -207,7 +253,7 @@ body {
                         background-color: $color__black;
                         color: $color__white;
                     }                    
-                }// formulaire
+                }// contact-form-modal
             }
         }
         .contact-modal.fadeOut {

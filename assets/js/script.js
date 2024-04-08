@@ -10,13 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.style.display = 'block'; // Afficher la modale
     });
 
-    document.addEventListener('wpcf7mailsent', function(event) {
-        // Réinitialiser le formulaire après l'envoi réussi
-        var formId = ed934cd;
-        var form = document.getElementById(formId);
-        form.reset();
-    }, false);
-
     // JavaScript pour fermer la modale avec fade out
     function closeModal() {
         var modal = document.getElementById('contact-modal');

@@ -41,3 +41,7 @@ function add_open_modal_class_to_menu_link($atts, $item, $args) {
     }
     return $atts;
 }
+
+
+// Ajoute la prise en charge des modèles de page personnalisés
+add_theme_support('custom-page-templates');
