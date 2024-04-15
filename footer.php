@@ -1,4 +1,4 @@
-</div><!-- #content -->
+</div> <!-- #content -->
 
 <footer id="colophon" class="site-footer">
     <div class="site-info">
@@ -8,9 +8,9 @@
                 'menu_id'        => 'footer-menu',
             ) );
         ?>
-    </div><!-- .site-info -->
-    <?php get_template_part( 'templates-parts/contact-modal' ); ?><!-- intégration modale de contact -->
-</footer><!-- #colophon -->
+    </div> <!-- .site-info -->
+    <?php get_template_part( 'templates-parts/contact-modal' ); ?> <!-- intégration modale de contact -->
+</footer> <!-- #colophon -->
 
 <?php wp_footer(); ?>
 

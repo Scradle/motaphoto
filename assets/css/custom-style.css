@@ -20,7 +20,7 @@
 @font-face {
   font-family: "Space Mono";
   src: url("../fonts/SpaceMono-BoldItalic.woff2") format("woff2");
-  font-weight: 400;
+  font-weight: 700;
   font-style: italic;
 }
 @font-face {
@@ -48,20 +48,25 @@
   }
 }
 /*body**********************************************************************************/
+body {
+  max-width: 1440px;
+  min-width: 375px;
+  margin: 0 auto;
+}
 body * {
   text-decoration: none;
   color: inherit;
   list-style: none;
 }
-
-body {
-  max-width: 1440px;
-  min-width: 300px;
-  margin: 0 auto;
+body .site-header {
+  box-shadow: 0px 4px 14px 10px rgba(0, 0, 0, 0.031372549);
+  margin-bottom: 1%;
 }
 body .site-header .site-branding {
   display: flex;
-  justify-content: space-around;
+  margin: 0 auto;
+  width: 80%;
+  justify-content: space-between;
   height: 80px;
 }
 body .site-header .site-branding .logo {
@@ -84,16 +89,17 @@ body .site-header .site-branding .main-navigation .menu-header-menu-container ul
 body .site-header .site-branding .main-navigation .menu-header-menu-container ul li:hover {
   font-weight: 700;
 }
-body .site-content .content-area .site-main .home-hero {
+body .site-content .home-hero {
   max-width: 1440px;
   position: relative;
   justify-content: center;
   display: flex;
 }
-body .site-content .content-area .site-main .home-hero img {
-  max-width: inherit;
+body .site-content .home-hero img {
+  width: 100%;
+  height: auto;
 }
-body .site-content .content-area .site-main .home-hero h1 {
+body .site-content .home-hero h1 {
   position: absolute;
   z-index: 2;
   top: 32%;
@@ -105,17 +111,170 @@ body .site-content .content-area .site-main .home-hero h1 {
   color: transparent;
   -webkit-text-stroke: 3px #ffffff;
 }
-body .site-content .content-area .site-main .single-photo {
+body .site-content .single-gallery {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-body .site-content .content-area .site-main .single-photo .single-photo-txt {
-  width: 100%;
+body .site-content .single-gallery .img-gallery {
+  width: calc(40% - 10px);
+  margin: 10px;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 1;
 }
-body .site-content .content-area .site-main .single-photo .single-photo-img img {
+body .site-content .single-gallery .img-gallery a img {
+  height: 100%;
   width: 100%;
-  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body .site-content .load-more {
+  display: flex;
+  justify-content: center;
+  padding: 2% 0;
+}
+body .site-content .load-more .load-more-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #D8D8D8;
+  font-family: Space Mono;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 17px;
+  color: #000000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 50px;
+  width: 20%;
+  z-index: 3;
+  position: relative;
+  transition: background-color 1s ease;
+  margin: 0 10%;
+}
+body .site-content .load-more .load-more-btn:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+body .site-content .single-photo {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+body .site-content .single-photo .single-photo-txt {
+  width: 49%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  border-bottom: 1px solid black;
+  padding-bottom: 3%;
+}
+body .site-content .single-photo .single-photo-txt h2 {
+  font-family: "Space Mono";
+  font-size: 66px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 58px;
+  text-transform: uppercase;
+  max-width: 50%;
+}
+body .site-content .single-photo .single-photo-txt p {
+  font-family: "Space Mono";
+  font-style: normal;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+body .site-content .single-photo .single-photo-img {
+  overflow: hidden;
+  width: 49%;
+}
+body .site-content .single-photo .single-photo-img img {
+  width: 100%;
+  height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
+}
+body .site-content .single-contact {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 2% 0;
+  border-bottom: 1px solid black;
+}
+body .site-content .single-contact .single-contact-left {
+  width: 49%;
+  display: flex;
+  justify-content: space-between;
+}
+body .site-content .single-contact .single-contact-left p {
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 21px;
+}
+body .site-content .single-contact .single-contact-left .single-contact-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #D8D8D8;
+  font-family: Space Mono;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 17.77px;
+  color: #000000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 50px;
+  width: 40%;
+  z-index: 3;
+  position: relative;
+  transition: background-color 1s ease;
+  margin: 0 10%;
+}
+body .site-content .single-contact .single-contact-left .single-contact-btn:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+body .site-content .single-contact .single-contact-right {
+  width: 49%;
+}
+body .site-content .single-suggestion {
+  width: 80%;
+  margin: 0 auto;
+}
+body .site-content .single-suggestion h3 {
+  font-family: Space Mono;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26.66px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4% 0;
+}
+body .site-content .single-suggestion .single-suggestion-imgs {
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+  padding-bottom: 8%;
+}
+body .site-content .single-suggestion .single-suggestion-imgs a {
+  width: 49%;
+  overflow: hidden;
+  aspect-ratio: 1;
+}
+body .site-content .single-suggestion .single-suggestion-imgs a img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 body .site-footer {
   border-top: 1px solid #000000;
@@ -152,7 +311,9 @@ body .site-footer .contact-modal .modal-content {
   left: 50%;
   transform: translate(-50%, -50%);
   border: 3px solid #000000;
+  width: 60%;
   max-width: 600px;
+  height: auto;
   overflow: hidden;
   background-color: #ffffff;
 }
@@ -202,7 +363,7 @@ body .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7-form 
   font-family: Space Mono;
   font-size: 12px;
   font-weight: 400;
-  line-height: 17.77px;
+  line-height: 17px;
   color: #000000;
   border: none;
   border-radius: 4px;
