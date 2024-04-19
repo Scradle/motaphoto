@@ -9,8 +9,10 @@ get_header();
 <section id= "single-gallery" class="single-gallery">
     <?php
         $args = array(
-            'post_type' => 'photo', // Remplacez "votre_custom_post_type" par le nom de votre CPT
+            'post_type' => 'photo', 
             'posts_per_page' => 8, // Pour afficher les posts
+            'order' => 'ASC',  // afficher par ordre ascendant
+            'orderby'=> 'date',
         );
         $custom_posts = new WP_Query($args);
 
@@ -18,7 +20,7 @@ get_header();
             while ($custom_posts->have_posts()) : $custom_posts->the_post();
         ?>
             <div class= "img-gallery">
-                <a href="<?php the_permalink(); ?>"><?php $photo = get_field('photo'); echo '<img src="' . $photo . '" alt="Photo sélectionnée">' ?></a>
+                <a href="<?php the_permalink(); ?>"><?php $photo = get_field('photo'); echo '<img src="' . $photo . '" alt="Photo '.get_the_title().'">' ?></a>
             </div>
         <?php
             endwhile;
@@ -29,7 +31,7 @@ get_header();
     ?>      
 </section>
 <div class="load-more">
-    <button class="load-more-btn">Charger plus</button>
+    <button id="load-more-btn" class="load-more-btn">Charger plus</button>
 </div>
 
 <?php

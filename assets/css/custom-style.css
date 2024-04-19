@@ -48,19 +48,17 @@
   }
 }
 /*body**********************************************************************************/
-body {
-  max-width: 1440px;
-  min-width: 375px;
-  margin: 0 auto;
-}
 body * {
   text-decoration: none;
   color: inherit;
   list-style: none;
 }
 body .site-header {
+  max-width: 1440px;
+  min-width: 375px;
+  margin: 0 auto;
   box-shadow: 0px 4px 14px 10px rgba(0, 0, 0, 0.031372549);
-  margin-bottom: 1%;
+  margin-bottom: 1vh;
 }
 body .site-header .site-branding {
   display: flex;
@@ -70,8 +68,16 @@ body .site-header .site-branding {
   height: 80px;
 }
 body .site-header .site-branding .logo {
-  height: 18%;
+  height: 16%;
   padding-top: 35px;
+}
+body .site-header .site-branding .main-navigation {
+  display: flex;
+  flex-direction: row;
+  margin-left: 3%;
+}
+body .site-header .site-branding .main-navigation .menu-header-menu-container {
+  display: block;
 }
 body .site-header .site-branding .main-navigation .menu-header-menu-container ul {
   display: flex;
@@ -89,6 +95,102 @@ body .site-header .site-branding .main-navigation .menu-header-menu-container ul
 body .site-header .site-branding .main-navigation .menu-header-menu-container ul li:hover {
   font-weight: 700;
 }
+body .site-header .site-branding .main-navigation .menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  justify-content: center;
+}
+body .site-header .site-branding .main-navigation .menu-toggle .line {
+  width: 40px;
+  margin-block: 3px;
+  height: 3px;
+  background-color: #000000;
+}
+body .site-header .mini-menu-modal {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  z-index: 2000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  animation: fadeIn 1s ease-in-out forwards;
+}
+body .site-header .mini-menu-modal .site-header-mini {
+  max-width: 1440px;
+  box-shadow: 0px 4px 14px 10px rgba(0, 0, 0, 0.031372549);
+  background-color: #ffffff;
+}
+body .site-header .mini-menu-modal .site-header-mini .site-branding-mini {
+  display: flex;
+  margin: 0 auto;
+  width: 80%;
+  justify-content: space-between;
+  height: 72px;
+}
+body .site-header .mini-menu-modal .site-header-mini .site-branding-mini .logo-mini {
+  height: 16%;
+  padding-top: 35px;
+}
+body .site-header .mini-menu-modal .site-header-mini .site-branding-mini .menu-toggle-cross {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: #000000;
+  justify-content: center;
+}
+body .site-header .mini-menu-modal .site-header-mini .site-branding-mini .menu-toggle-cross .line1 {
+  transform: translateY(8px) rotate(45deg);
+  width: 40px;
+  margin-block: 6px;
+  height: 3px;
+  background-color: #000000;
+}
+body .site-header .mini-menu-modal .site-header-mini .site-branding-mini .menu-toggle-cross .line2 {
+  transform: translateY(-8px) rotate(-45deg);
+  width: 40px;
+  margin-block: 6px;
+  height: 3px;
+  background-color: #000000;
+}
+body .site-header .mini-menu-modal .mini-navigation {
+  display: block;
+  max-width: 1440px;
+  height: 100vh;
+  width: 100vw;
+  background-color: #E00000;
+  text-align: center;
+}
+body .site-header .mini-menu-modal .mini-navigation ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 50px;
+  padding-top: 15px;
+}
+body .site-header .mini-menu-modal .mini-navigation ul li {
+  font-family: "Space Mono";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  color: #ffffff;
+}
+body .site-header .mini-menu-modal .mini-navigation ul li:hover {
+  font-weight: 700;
+}
+body .site-content {
+  max-width: 1440px;
+  min-width: 375px;
+  margin: 0 auto;
+}
 body .site-content .home-hero {
   max-width: 1440px;
   position: relative;
@@ -102,7 +204,7 @@ body .site-content .home-hero img {
 body .site-content .home-hero h1 {
   position: absolute;
   z-index: 2;
-  top: 32%;
+  top: 30%;
   font-family: Space Mono;
   font-size: 96px;
   font-style: italic;
@@ -112,13 +214,14 @@ body .site-content .home-hero h1 {
   -webkit-text-stroke: 3px #ffffff;
 }
 body .site-content .single-gallery {
+  padding-top: 2vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 20px;
 }
 body .site-content .single-gallery .img-gallery {
-  width: calc(40% - 10px);
-  margin: 10px;
+  width: 40%;
   overflow: hidden;
   position: relative;
   aspect-ratio: 1;
@@ -172,7 +275,7 @@ body .site-content .single-photo .single-photo-txt {
   border-bottom: 1px solid black;
   padding-bottom: 3%;
 }
-body .site-content .single-photo .single-photo-txt h2 {
+body .site-content .single-photo .single-photo-txt h1 {
   font-family: "Space Mono";
   font-size: 66px;
   font-style: italic;
@@ -277,6 +380,9 @@ body .site-content .single-suggestion .single-suggestion-imgs a img {
      object-fit: cover;
 }
 body .site-footer {
+  max-width: 1440px;
+  min-width: 375px;
+  margin: 0 auto;
   border-top: 1px solid #000000;
 }
 body .site-footer .site-info .menu-footer-menu-container ul {
@@ -381,4 +487,39 @@ body .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7-form 
 }
 body .site-footer .contact-modal.fadeOut {
   animation: fadeOut 1s ease-in-out forwards;
+}
+
+/*media queries**************************************************************************************/
+@media all and (max-width: 768px) {
+  body .site-header .site-branding {
+    height: 72px;
+  }
+  body .site-header .site-branding .main-navigation .menu-header-menu-container {
+    display: none;
+  }
+  body .site-header .site-branding .main-navigation .menu-toggle {
+    display: flex;
+  }
+  body .site-content .home-hero h1 {
+    font-size: 48px;
+    -webkit-text-stroke: 1px #ffffff;
+    top: 20%;
+  }
+  body .site-content .single-gallery .img-gallery {
+    width: 80%;
+  }
+  body .site-content .load-more {
+    padding: 10% 0;
+  }
+  body .site-content .load-more .load-more-btn {
+    width: 50%;
+  }
+  .site-footer .site-info .menu-footer-menu-container ul {
+    flex-direction: column;
+    text-align: center;
+    padding: 8% 0;
+  }
+  .site-footer .site-info .menu-footer-menu-container ul li {
+    padding: 4% 0;
+  }
 }/*# sourceMappingURL=custom-style.css.map */

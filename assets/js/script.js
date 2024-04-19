@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var modal = document.getElementById('contact-modal');
     var specificLink = document.querySelector('.btn-modale'); // Sélectionner le lien spécifique par son identifiant
     var specificBtn = document.querySelector('.single-contact-btn');
+    var reference = photo_params.reference;// Récupérer  avec wp_localize
 
     // Écouter le clic sur le lien du menu
     specificLink.addEventListener('click', function(event) {
@@ -45,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+/*Gestion des demandes Ajax*****************************************************************************/
 
 // Charger  plus  d'image  sur  front-page  à l'appui  sur le bouton
 document.addEventListener('DOMContentLoaded', function() {
@@ -52,20 +54,56 @@ document.addEventListener('DOMContentLoaded', function() {
     if (loadMoreBtn) {
         var offset = 8; // Offset initial
 
+        // Fonction pour obtenir le nombre total d'images
+        function getTotalPhotoCount(callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', script_params.ajaxurl + '?action=get_total_photo_count', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        var totalImages = response.data;
+                        callback(totalImages);
+                    }
+                }
+            };
+            xhr.send();
+        }
+
+        // Charger le nombre total d'images au chargement de la page
+        getTotalPhotoCount(function(totalImages) {
+            // Vérifier si le bouton doit être caché au chargement de la page
+            if (offset >= totalImages) {
+                loadMoreBtn.style.display = 'none'; // Cacher le bouton s'il n'y a plus de photos
+            }
+        });
+
         loadMoreBtn.addEventListener('click', function() {
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', ajaxurl, true);
+            xhr.open('POST', script_params.ajaxurl, true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var response = xhr.responseText;
                     document.querySelector('.single-gallery').insertAdjacentHTML('beforeend', response);
                     offset += 8; // Incrémenter l'offset pour les prochaines photos
+
+                    // Charger le nombre total d'images à nouveau
+                    getTotalPhotoCount(function(totalImages) {
+                        // Vérifier s'il reste des photos à charger
+                        if (offset >= totalImages) {
+                            loadMoreBtn.style.display = 'none'; // Cacher le bouton s'il n'y a plus de photos
+                        }
+                    });
                 }
             };
             xhr.send('action=load_more_photos&offset=' + offset);
         });
     }
 });
+
+
+
 
 

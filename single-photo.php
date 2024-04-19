@@ -6,7 +6,7 @@ get_header();
     <div class="single-photo-txt">
         <?php //récupération ACF
             $titre = get_field('titre');
-            echo '<h2>' . $titre . '</h2>';
+            echo '<h1>' . $titre . '</h1>';
             $reference = get_field('reference');
             echo '<p class="referenceValue">Référence : ' . $reference . '</p>';
             $categorie = get_field('categorie');
@@ -17,11 +17,10 @@ get_header();
             echo '<p>Type : ' . $type->name . '</p>';
             $annee = get_field('annee');
             echo '<p>Année : ' . $annee . '</p>';
+            wp_localize_script('script', 'photo_params', [
+                'reference' 					=> $reference,
+            ]); 
         ?>
-        <script>
-            var reference = <?php echo json_encode($reference); ?>;
-            // utiliser la variable JavaScript 'reference' avec la valeur récupérée du champ ACF
-        </script>
     </div>
     <div class="single-photo-img">
         <?php //récupération ACF
@@ -53,21 +52,22 @@ get_header();
             $args = array(
                 'post_type' => 'photo',
                 'tax_query' => array(
-                    array(
+                    'relation'  => 'OR',
+                    [
                         'taxonomy' => 'categorie',
                         'field'    => 'name',
                         'terms'    => $categorie->name,
-                    ),
-                    array(
+                    ],
+                    [
                         'taxonomy' => 'format',
                         'field'    => 'name',
                         'terms'    => $format->name,
-                    ),
-                    array(
-                        'taxonomy' => 'type',
+                    ],
+                    [
+                        'taxonomy' => 'techno',
                         'field'    => 'name',
                         'terms'    => $type->name,
-                    ),
+                    ],
                 ),
                 'posts_per_page' => 2, // Limiter le nombre de suggestions à 2
             );

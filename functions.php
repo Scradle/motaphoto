@@ -10,12 +10,20 @@ define('ASSETS_VERSION', $assets_version);
 // Enregistrer les scripts et les styles
 function theme_enqueue_scripts() {
     // Enregistrer les scripts
-    wp_enqueue_script( 'script', THEME_URI . '/assets/js/script.js', array(), ASSETS_VERSION, true );   
+    wp_enqueue_script( 'script', THEME_URI . '/assets/js/script.js', array(), ASSETS_VERSION, true );  
+    wp_localize_script('script', 'script_params', [
+		'ajaxurl' 					=> admin_url( 'admin-ajax.php' ),
+	]); 
+    wp_localize_script('script', 'photo_params', [
+		'photo_params' 				=> 'reference',
+	]); 
     // Enregistrer les styles
-    wp_enqueue_style( 'style', THEME_URI , array(), ASSETS_VERSION );
+    wp_enqueue_style( 'style', THEME_URI."/style.css" , array(), ASSETS_VERSION );
     wp_enqueue_style( 'custom-style', THEME_URI . '/assets/css/custom-style.css', array(), ASSETS_VERSION );
 }
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_scripts' );
+
+
 
 //Enregistrer les menus wordpress
 function register_my_menus() {
@@ -131,35 +139,42 @@ function create_type_taxonomy() {
 }
 add_action( 'init', 'create_type_taxonomy' );
 
-// Ajouter la variable ajaxurl dans le script JavaScript
-function add_ajax_url() {
-    echo '<script type="text/javascript">
-            var ajaxurl = "' . admin_url('admin-ajax.php') . '";
-          </script>';
-}
-add_action('wp_head', 'add_ajax_url');
-
 // Enregistrer la fonction pour charger les photos via AJAX
-add_action('wp_ajax_load_more_photos', 'load_more_photos');
-add_action('wp_ajax_nopriv_load_more_photos', 'load_more_photos');
-
 function load_more_photos() {
     $args = array(
         'post_type' => 'photo',
         'posts_per_page' => 8,
-        'offset' => $_POST['offset'], // Offset pour charger les photos suivantes
+        'order' => 'ASC',
+        'orderby'=> 'date',
+        'offset' => $_POST['offset'],
     );
     $custom_posts = new WP_Query($args);
 
     if ($custom_posts->have_posts()) :
         while ($custom_posts->have_posts()) : $custom_posts->the_post();
             $photo = get_field('photo');
-            echo '<div class="img-gallery"><a href="' . get_permalink() . '"><img src="' . $photo . '" alt="Photo sélectionnée"></a></div>';
+            echo '<div class="img-gallery"><a href="' . get_permalink() . '"><img src="' . $photo . '" alt="Photo '.get_the_title().'"></a></div>';
         endwhile;
         wp_reset_postdata();
     else :
-        echo "Pas d'autres  photos trouvées.";
+        echo "Toutes les photos ont été chargées.";
     endif;
 
-    wp_die(); // Obligatoire pour terminer la demande AJAX
+    wp_die();
 }
+add_action('wp_ajax_load_more_photos', 'load_more_photos');
+add_action('wp_ajax_nopriv_load_more_photos', 'load_more_photos');
+
+//Pour  obtenir  le  nombre  totale  de  photos dispo via AJAX
+function get_total_photo_count() {
+    $args = array(
+        'post_type' => 'photo',
+        'posts_per_page' => -1, // Récupérer tous les posts
+    );
+    $custom_query = new WP_Query($args);
+    $total_count = $custom_query->found_posts;
+    wp_send_json_success($total_count);
+}
+add_action('wp_ajax_get_total_photo_count', 'get_total_photo_count');
+add_action('wp_ajax_nopriv_get_total_photo_count', 'get_total_photo_count');
+
