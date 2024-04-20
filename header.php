@@ -27,6 +27,7 @@
     </div>
     <!-- menu invoqué avec le burger-->
     <div id="mini-menu-modal" class="mini-menu-modal">
+        <div  class="mini-menu-veil"></div>
         <div class="site-header-mini">
             <div class="site-branding-mini">
                 <img class="logo-mini" src="<?php echo THEME_URI . '/assets/images/logo.png'; ?> " alt="logo">
@@ -39,8 +40,8 @@
         <nav id="mini-navigation" class="mini-navigation">
             <?php
             wp_nav_menu( array(
-                'theme_location' => 'menu-principal',
-                'menu_id'        => 'header-menu',
+                'theme_location' => 'mini-menu',
+                'menu_id'        => 'mini-header-menu',
             ) );
             ?>
         </nav>

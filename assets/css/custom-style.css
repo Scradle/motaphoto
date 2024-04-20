@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*Local fonts************************************************************************/
 @font-face {
   font-family: "Space Mono";
@@ -47,7 +48,26 @@
     opacity: 0;
   }
 }
+@keyframes slideInRight {
+  from {
+    transform: translateX(150%); /* Position initiale (en dehors de l'écran à droite) */
+  }
+  to {
+    transform: translateX(0); /* Position finale (à l'écran) */
+  }
+}
+@keyframes slideInLeft {
+  from {
+    transform: translateX(0); /* Position initiale (en dehors de l'écran à droite) */
+  }
+  to {
+    transform: translateX(150%); /* Position finale (à l'écran) */
+  }
+}
 /*body**********************************************************************************/
+body {
+  margin: 0;
+}
 body * {
   text-decoration: none;
   color: inherit;
@@ -113,7 +133,13 @@ body .site-header .mini-menu-modal {
   display: none;
   flex-direction: column;
   position: fixed;
-  z-index: 2000;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+body .site-header .mini-menu-modal .mini-menu-veil {
   position: absolute;
   top: 0;
   left: 0;
@@ -121,11 +147,20 @@ body .site-header .mini-menu-modal {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   animation: fadeIn 1s ease-in-out forwards;
+  transition: opacity 1s ease;
+}
+body .site-header .mini-menu-modal .mini-menu-veil.slideOut {
+  animation: fadeOut 1s ease-in-out forwards;
+  transition: opacity 1s ease;
 }
 body .site-header .mini-menu-modal .site-header-mini {
+  z-index: 1001;
   max-width: 1440px;
+  width: 100%;
   box-shadow: 0px 4px 14px 10px rgba(0, 0, 0, 0.031372549);
   background-color: #ffffff;
+  margin: 0 auto;
+  animation: slideInRight 1s ease forwards; /* Utilisation de l'animation */
 }
 body .site-header .mini-menu-modal .site-header-mini .site-branding-mini {
   display: flex;
@@ -161,15 +196,21 @@ body .site-header .mini-menu-modal .site-header-mini .site-branding-mini .menu-t
   height: 3px;
   background-color: #000000;
 }
+body .site-header .mini-menu-modal .site-header-mini.slideOut {
+  animation: slideInLeft 1s ease forwards;
+}
 body .site-header .mini-menu-modal .mini-navigation {
   display: block;
   max-width: 1440px;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   background-color: #E00000;
   text-align: center;
+  margin: 0 auto;
+  animation: slideInRight 1s ease forwards; /* Utilisation de l'animation */
 }
 body .site-header .mini-menu-modal .mini-navigation ul {
+  margin-top: 30vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -178,13 +219,13 @@ body .site-header .mini-menu-modal .mini-navigation ul {
 }
 body .site-header .mini-menu-modal .mini-navigation ul li {
   font-family: "Space Mono";
-  font-size: 16px;
+  font-size: 44px;
   font-style: normal;
   font-weight: 400;
   color: #ffffff;
 }
-body .site-header .mini-menu-modal .mini-navigation ul li:hover {
-  font-weight: 700;
+body .site-header .mini-menu-modal .mini-navigation.slideOut {
+  animation: slideInLeft 1s ease forwards;
 }
 body .site-content {
   max-width: 1440px;
@@ -206,10 +247,9 @@ body .site-content .home-hero h1 {
   z-index: 2;
   top: 30%;
   font-family: Space Mono;
-  font-size: 96px;
+  font-size: clamp(3vw, 7vw, 96px);
   font-style: italic;
   font-weight: 700;
-  line-height: 142.18px;
   color: transparent;
   -webkit-text-stroke: 3px #ffffff;
 }
@@ -402,8 +442,17 @@ body .site-footer .site-info .menu-footer-menu-container ul li:hover {
 }
 body .site-footer .contact-modal {
   display: none;
+  align-items: center;
+  justify-content: center;
   position: fixed;
-  z-index: 1000;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+body .site-footer .contact-modal .modal-veil {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -411,14 +460,15 @@ body .site-footer .contact-modal {
   background-color: rgba(0, 0, 0, 0.8);
   animation: fadeIn 1s ease-in-out forwards;
 }
+body .site-footer .contact-modal .modal-veil.fadeOut {
+  animation: fadeOut 1s ease-in-out forwards;
+}
 body .site-footer .contact-modal .modal-content {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  z-index: 2001;
   border: 3px solid #000000;
-  width: 60%;
+  width: 80%;
   max-width: 600px;
+  min-width: 270px;
   height: auto;
   overflow: hidden;
   background-color: #ffffff;
@@ -485,8 +535,17 @@ body .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7-form 
   background-color: #000000;
   color: #ffffff;
 }
-body .site-footer .contact-modal.fadeOut {
+body .site-footer .contact-modal .modal-content.fadeIn {
+  animation: fadeIn 1s ease-in-out forwards;
+}
+body .site-footer .contact-modal .modal-content.slideIn {
+  animation: slideInRight 1s ease forwards;
+}
+body .site-footer .contact-modal .modal-content.fadeOut {
   animation: fadeOut 1s ease-in-out forwards;
+}
+body .site-footer .contact-modal .modal-content.slideOut {
+  animation: slideInLeft 1s ease forwards;
 }
 
 /*media queries**************************************************************************************/
@@ -501,9 +560,8 @@ body .site-footer .contact-modal.fadeOut {
     display: flex;
   }
   body .site-content .home-hero h1 {
-    font-size: 48px;
     -webkit-text-stroke: 1px #ffffff;
-    top: 20%;
+    top: 30%;
   }
   body .site-content .single-gallery .img-gallery {
     width: 80%;
@@ -521,5 +579,28 @@ body .site-footer .contact-modal.fadeOut {
   }
   .site-footer .site-info .menu-footer-menu-container ul li {
     padding: 4% 0;
+  }
+  .site-footer .contact-modal {
+    align-items: start !important;
+  }
+  .site-footer .contact-modal .modal-content .contact-header-modal {
+    padding-top: 2%;
+  }
+  .site-footer .contact-modal .modal-content .contact-header-modal img {
+    height: 15vw;
+  }
+  .site-footer .contact-modal .modal-content .contact-form-modal {
+    padding: 0 !important;
+  }
+  .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7.js {
+    line-height: 0 !important;
+  }
+  .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7-form input[type=text],
+  .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7-form input[type=email],
+  .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7-form textarea {
+    line-height: 0 !important;
+  }
+  .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7-form textarea {
+    height: 200px !important;
   }
 }/*# sourceMappingURL=custom-style.css.map */

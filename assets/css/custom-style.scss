@@ -67,6 +67,25 @@ $breakpoint__small_phone: 512px;
         opacity: 0;
     }
 }
+//animation  d'apparition du mini menu
+@keyframes slideInRight {
+    from {
+      transform: translateX(150%); /* Position initiale (en dehors de l'écran à droite) */
+    }
+    to {
+      transform: translateX(0); /* Position finale (à l'écran) */
+    }
+}
+//animation  de disparition du mini menu
+@keyframes slideInLeft {
+    from {
+      transform: translateX(0); /* Position initiale (en dehors de l'écran à droite) */
+    }
+    to {
+      transform: translateX(150%); /* Position finale (à l'écran) */
+    }
+}
+
 
 /*body**********************************************************************************/
 
@@ -77,6 +96,7 @@ body {
         color: inherit;
         list-style: none;
     }
+    margin: 0;
     //header.php
     .site-header {
         max-width: 1440px;
@@ -139,18 +159,33 @@ body {
             display: none;
             flex-direction: column;
             position: fixed;
-            z-index: 2000;
-            position: absolute;
+            z-index: 1000;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            animation: fadeIn 1s ease-in-out forwards;
+            .mini-menu-veil {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.8);
+                animation: fadeIn 1s ease-in-out forwards;
+                transition: opacity 1s ease;
+            }
+            .mini-menu-veil.slideOut {
+                animation: fadeOut 1s ease-in-out forwards;
+                transition: opacity 1s ease;
+            }
             .site-header-mini {
+                z-index: 1001;
                 max-width: 1440px;
+                width: 100%;
                 box-shadow: 0px 4px 14px 10px #00000008;
                 background-color: $color__white;
+                margin: 0 auto;
+                animation: slideInRight 1s ease forwards; /* Utilisation de l'animation */
                 .site-branding-mini  {
                     display: flex;
                     margin: 0 auto;
@@ -186,14 +221,20 @@ body {
                     }
                 }
             }
+            .site-header-mini.slideOut {
+                animation: slideInLeft 1s ease forwards;
+            }
             .mini-navigation  {
                 display:block;
                 max-width: 1440px;
-                height: 100vh;
-                width: 100vw;
+                height: 100%;
+                width: 100%;
                 background-color: $color__red;
                 text-align: center;
+                margin: 0 auto;
+                animation: slideInRight 1s ease forwards; /* Utilisation de l'animation */
                 ul {
+                    margin-top: 30vh;
                     display: flex;
                     flex-direction: column;
                     justify-content: space-around;
@@ -201,15 +242,15 @@ body {
                     padding-top: 15px;
                     li {
                         font-family: 'Space Mono';
-                        font-size: 16px;
+                        font-size: 44px;
                         font-style: normal;
                         font-weight: 400;
                         color: $color__white;
                     }
-                    li:hover {
-                        font-weight: 700;
-                    }
                 }
+            }
+            .mini-navigation.slideOut {
+                animation: slideInLeft 1s ease forwards;
             }
         }
     } // header
@@ -232,10 +273,9 @@ body {
                 z-index: 2;
                 top: 30%;
                 font-family: Space Mono;
-                font-size: 96px;
+                font-size: clamp(3vw, 7vw, 96px);
                 font-style: italic;
-                font-weight: 700;
-                line-height: 142.18px;
+                font-weight: 700;                
                 color: transparent;
                 -webkit-text-stroke: 3px $color__white;
             }
@@ -435,22 +475,32 @@ body {
         //contact-modal.php
         .contact-modal {
             display: none;
+            align-items: center;
+            justify-content: center;
             position: fixed;
-            z-index: 1000;
+            z-index: 2000;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8); 
-            animation: fadeIn 1s ease-in-out forwards;
-            .modal-content {
+            .modal-veil {
                 position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.8); 
+                animation: fadeIn 1s ease-in-out forwards;
+            }
+            .modal-veil.fadeOut {
+                animation: fadeOut 1s ease-in-out forwards; // Animation pour fermeture en fade out 
+            }
+            .modal-content {
+                z-index: 2001;
                 border: 3px solid $color__black;
-                width: 60%;
+                width: 80%;
                 max-width:600px;
+                min-width: 270px;
                 height: auto;
                 overflow: hidden;
                 background-color: $color__white;
@@ -517,9 +567,18 @@ body {
                     }                    
                 } // contact-form-modal
             }
-        }
-        .contact-modal.fadeOut {
-            animation: fadeOut 1s ease-in-out forwards; // Animation pour fermeture en fade out 
+            .modal-content.fadeIn {
+                animation: fadeIn 1s ease-in-out forwards;
+            }
+            .modal-content.slideIn {
+                animation: slideInRight 1s ease forwards;
+            }
+            .modal-content.fadeOut {
+                animation: fadeOut 1s ease-in-out forwards; // Animation pour fermeture en fade out 
+            }
+            .modal-content.slideOut {
+                animation: slideInLeft 1s ease forwards;
+            }
         }
     } // footer
 } // body
@@ -568,9 +627,8 @@ body {
                     
                 }
                 h1 {
-                    font-size: 48px;
                     -webkit-text-stroke: 1px $color__white;
-                    top: 20%;
+                    top: 30%;
                 }
             }
             .single-gallery {
@@ -664,15 +722,41 @@ body {
             }
             //contact-modal.php
             .contact-modal {
-                
+                align-items: start  !important;
+                .modal-veil  {
+
+                }
                 .modal-content {
-                    
+
                     .contact-header-modal {
-                        
+                        padding-top: 2%;
+                        img  {
+                            height:  15vw;
+                        }
                     }
                     .contact-form-modal {
-                        
-                        
+                        padding: 0 !important;
+                        .wpcf7.js {
+                            line-height: 0 !important;
+                        }
+                        .wpcf7-form input[type="text"],
+                        .wpcf7-form input[type="email"],
+                        .wpcf7-form textarea {
+                            line-height: 0 !important;
+                        }
+                        .wpcf7-form input[type="text"],
+                        .wpcf7-form input[type="email"] {
+                            
+                        }
+                        .wpcf7-form textarea {
+                            height: 200px !important;
+                        }
+                        .wpcf7-form input[type="submit"] {
+                            
+                        }
+                        .wpcf7-form input[type="submit"]:hover {
+                            
+                        }                          
                     } // contact-form-modal
                 }
             }

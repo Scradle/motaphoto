@@ -31,6 +31,7 @@ function register_my_menus() {
         array(
             'menu-principal' => __( 'Menu Principal' ),
             'menu-secondaire' => __( 'Menu Secondaire' ),
+            'mini-menu' => __( 'Mini  menu' ),
             // Ajoutez d'autres emplacements de menu si nécessaire
         )
     );

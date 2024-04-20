@@ -1,4 +1,5 @@
 <div id="contact-modal" class="contact-modal">
+    <div  class="modal-veil"></div>
     <div class="modal-content">
         <div class="contact-header-modal">
             <img class="contact-header" src="<?php echo get_template_directory_uri() . './assets/images/contact-header.png'; ?> " alt="titre de la modale de contact">
