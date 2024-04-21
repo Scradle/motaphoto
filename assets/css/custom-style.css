@@ -200,22 +200,19 @@ body .site-header .mini-menu-modal .site-header-mini.slideOut {
   animation: slideInLeft 1s ease forwards;
 }
 body .site-header .mini-menu-modal .mini-navigation {
-  display: block;
+  display: flex;
   max-width: 1440px;
   height: 100%;
   width: 100%;
   background-color: #E00000;
-  text-align: center;
-  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
   animation: slideInRight 1s ease forwards; /* Utilisation de l'animation */
 }
 body .site-header .mini-menu-modal .mini-navigation ul {
-  margin-top: 30vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   gap: 50px;
-  padding-top: 15px;
 }
 body .site-header .mini-menu-modal .mini-navigation ul li {
   font-family: "Space Mono";
@@ -317,7 +314,7 @@ body .site-content .single-photo .single-photo-txt {
 }
 body .site-content .single-photo .single-photo-txt h1 {
   font-family: "Space Mono";
-  font-size: 66px;
+  font-size: clamp(3vw, 7vw, 66px);
   font-style: italic;
   font-weight: 500;
   line-height: 58px;
@@ -377,11 +374,10 @@ body .site-content .single-contact .single-contact-left .single-contact-btn {
   border-radius: 4px;
   cursor: pointer;
   height: 50px;
-  width: 40%;
+  width: 50%;
   z-index: 3;
   position: relative;
   transition: background-color 1s ease;
-  margin: 0 10%;
 }
 body .site-content .single-contact .single-contact-left .single-contact-btn:hover {
   background-color: #000000;
@@ -423,12 +419,13 @@ body .site-content .single-suggestion h3 {
 }
 body .site-content .single-suggestion .single-suggestion-imgs {
   display: flex;
+  flex-wrap: wrap;
   margin: 0 auto;
-  justify-content: space-between;
+  gap: 15px;
   padding-bottom: 8%;
 }
 body .site-content .single-suggestion .single-suggestion-imgs a {
-  width: 49%;
+  width: 48%;
   overflow: hidden;
   aspect-ratio: 1;
 }
@@ -590,6 +587,57 @@ body .site-footer .contact-modal .modal-content.slideOut {
   }
   body .site-content .load-more .load-more-btn {
     width: 50%;
+  }
+  body .site-content .single-photo {
+    flex-direction: column-reverse;
+    align-items: center;
+    border-bottom: 1px solid black;
+    width: 100%;
+  }
+  body .site-content .single-photo .single-photo-txt {
+    width: 80%;
+    border-bottom: none;
+    display: unset;
+  }
+  body .site-content .single-photo .single-photo-txt h1 {
+    max-width: 100%;
+  }
+  body .site-content .single-photo .single-photo-img {
+    width: 80%;
+  }
+  body .site-content .single-contact {
+    width: 100%;
+    justify-content: center;
+    padding-bottom: 3%;
+  }
+  body .site-content .single-contact .single-contact-left {
+    flex-direction: column;
+    width: 80%;
+  }
+  body .site-content .single-contact .single-contact-left p {
+    width: 100%;
+  }
+  body .site-content .single-contact .single-contact-left .single-contact-btn {
+    width: 100%;
+  }
+  body .site-content .single-contact .single-contact-right {
+    display: none;
+  }
+  body .site-content .single-suggestion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  body .site-content .single-suggestion h3 {
+    text-align: center;
+  }
+  body .site-content .single-suggestion .single-suggestion-imgs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  body .site-content .single-suggestion .single-suggestion-imgs a {
+    width: 100%;
   }
   body .site-footer .site-info .menu-footer-menu-container ul {
     flex-direction: column;

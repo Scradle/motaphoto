@@ -225,21 +225,18 @@ body {
                 animation: slideInLeft 1s ease forwards;
             }
             .mini-navigation  {
-                display:block;
+                display:flex;
                 max-width: 1440px;
                 height: 100%;
                 width: 100%;
                 background-color: $color__red;
-                text-align: center;
-                margin: 0 auto;
+                justify-content: center;
+                align-items: center;
                 animation: slideInRight 1s ease forwards; /* Utilisation de l'animation */
                 ul {
-                    margin-top: 30vh;
                     display: flex;
                     flex-direction: column;
-                    justify-content: space-around;
                     gap: 50px;
-                    padding-top: 15px;
                     li {
                         font-family: 'Space Mono';
                         font-size: 44px;
@@ -344,7 +341,8 @@ body {
                 padding-bottom: 3%;
                 h1 {
                     font-family: 'Space Mono';
-                    font-size: 66px;
+                    //font-size: 66px;
+                    font-size: clamp(3vw, 7vw, 66px);
                     font-style: italic;
                     font-weight: 500;
                     line-height: 58px;
@@ -403,11 +401,10 @@ body {
                     border-radius: 4px;
                     cursor: pointer;
                     height: 50px;
-                    width: 40%;
+                    width: 50%;
                     z-index: 3;
                     position: relative;
                     transition: background-color 1s ease;
-                    margin: 0 10%;
                 }
                 .single-contact-btn:hover {
                     background-color: $color__black;
@@ -451,11 +448,12 @@ body {
             }
             .single-suggestion-imgs {
                 display: flex;
+                flex-wrap: wrap;
                 margin : 0 auto;
-                justify-content: space-between;
+                gap: 15px;
                 padding-bottom: 8%;
                 a {
-                    width: 49%; 
+                    width: 48%;
                     overflow: hidden; 
                     aspect-ratio: 1;
                     img {
@@ -673,52 +671,65 @@ body {
             }
             //single-photos.php
             .single-photo {
-                
+                flex-direction: column-reverse;
+                align-items: center;
+                border-bottom:1px solid black;
+                width: 100%;
                 .single-photo-txt {
-                    
-                    h2 {
-                        
+                    width: 80%;
+                    border-bottom:none;
+                    display:unset;
+                    h1 {
+                        //font-size: 46px !important;
+                        max-width: 100%;
                     }
                     p {
                         
                     }
                 }
                 .single-photo-img {
-                
+                    width: 80%;
                 }
                 
             }
             .single-contact {
-            
+                width: 100%;
+                justify-content: center;
+                padding-bottom: 3%;
                 .single-contact-left {
-                    
+                    flex-direction: column;
+                    width: 80%;
                     p {
-                        
+                        width: 100%;
                     }
                     .single-contact-btn {
-                        
+                        width: 100%;
                     }
                     .single-contact-btn:hover {
                         
                     }        
                 }
                 .single-contact-right {
-                    
+                    display: none;
                 }
             }
             .single-suggestion {
-                
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
                 h3 {
-                    
+                    text-align: center;
                 }
                 .single-suggestion-imgs {
-                    
-                        a {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    a {
+                        width: 100%;
+                        img {
                             
-                            img {
-                                
-                            }
                         }
+                    }
                 }
             }
         }// site-content
