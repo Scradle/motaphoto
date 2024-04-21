@@ -348,13 +348,14 @@ body .site-content .single-contact {
   width: 80%;
   justify-content: space-between;
   margin: 0 auto;
-  padding: 2% 0;
+  padding: 1% 0;
   border-bottom: 1px solid black;
 }
 body .site-content .single-contact .single-contact-left {
   width: 49%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 body .site-content .single-contact .single-contact-left p {
   font-family: Poppins;
@@ -370,7 +371,7 @@ body .site-content .single-contact .single-contact-left .single-contact-btn {
   font-family: Space Mono;
   font-size: 12px;
   font-weight: 400;
-  line-height: 17.77px;
+  line-height: 18px;
   color: #000000;
   border: none;
   border-radius: 4px;
@@ -388,6 +389,24 @@ body .site-content .single-contact .single-contact-left .single-contact-btn:hove
 }
 body .site-content .single-contact .single-contact-right {
   width: 49%;
+  display: flex;
+  justify-content: end;
+}
+body .site-content .single-contact .single-contact-right .thumbnails-navigation .thumbnail {
+  max-width: 80px;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 1.2;
+}
+body .site-content .single-contact .single-contact-right .thumbnails-navigation .thumbnail img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body .site-content .single-contact .single-contact-right .thumbnails-navigation .arrows {
+  display: flex;
+  justify-content: space-between;
 }
 body .site-content .single-suggestion {
   width: 80%;
@@ -397,7 +416,7 @@ body .site-content .single-suggestion h3 {
   font-family: Space Mono;
   font-size: 18px;
   font-weight: 400;
-  line-height: 26.66px;
+  line-height: 27px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 4% 0;
@@ -572,35 +591,35 @@ body .site-footer .contact-modal .modal-content.slideOut {
   body .site-content .load-more .load-more-btn {
     width: 50%;
   }
-  .site-footer .site-info .menu-footer-menu-container ul {
+  body .site-footer .site-info .menu-footer-menu-container ul {
     flex-direction: column;
     text-align: center;
     padding: 8% 0;
   }
-  .site-footer .site-info .menu-footer-menu-container ul li {
+  body .site-footer .site-info .menu-footer-menu-container ul li {
     padding: 4% 0;
   }
-  .site-footer .contact-modal {
+  body .site-footer .contact-modal {
     align-items: start !important;
   }
-  .site-footer .contact-modal .modal-content .contact-header-modal {
+  body .site-footer .contact-modal .modal-content .contact-header-modal {
     padding-top: 2%;
   }
-  .site-footer .contact-modal .modal-content .contact-header-modal img {
+  body .site-footer .contact-modal .modal-content .contact-header-modal img {
     height: 15vw;
   }
-  .site-footer .contact-modal .modal-content .contact-form-modal {
+  body .site-footer .contact-modal .modal-content .contact-form-modal {
     padding: 0 !important;
   }
-  .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7.js {
+  body .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7.js {
     line-height: 0 !important;
   }
-  .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7-form input[type=text],
-  .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7-form input[type=email],
-  .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7-form textarea {
+  body .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7-form input[type=text],
+  body .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7-form input[type=email],
+  body .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7-form textarea {
     line-height: 0 !important;
   }
-  .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7-form textarea {
+  body .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7-form textarea {
     height: 200px !important;
   }
 }/*# sourceMappingURL=custom-style.css.map */

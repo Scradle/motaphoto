@@ -376,12 +376,13 @@ body {
             width: 80%;
             justify-content: space-between;
             margin: 0 auto;
-            padding: 2%  0;
+            padding: 1%  0;
             border-bottom:1px solid black;
             .single-contact-left {
                 width: 49%;
                 display: flex;
                 justify-content: space-between;
+                align-items: center;
                 p{
                     font-family: Poppins;
                     font-size: 14px;
@@ -396,7 +397,7 @@ body {
                     font-family: Space Mono;
                     font-size: 12px;
                     font-weight: 400;
-                    line-height: 17.77px;
+                    line-height: 18px;
                     color: $color__black;
                     border: none;
                     border-radius: 4px;
@@ -415,6 +416,25 @@ body {
             }
             .single-contact-right {
                 width: 49%;
+                display: flex;
+                justify-content: end;
+                .thumbnails-navigation  {
+                    .thumbnail  {
+                        max-width: 80px; 
+                        overflow: hidden; 
+                        position: relative; 
+                        aspect-ratio: 1.2;
+                        img {
+                            height: 100%;
+                            width: 100%;
+                            object-fit: cover;
+                        }
+                    }
+                    .arrows {
+                        display: flex;
+                        justify-content: space-between;
+                    }
+                }
             }
         }
         .single-suggestion {
@@ -424,7 +444,7 @@ body {
                 font-family: Space Mono;
                 font-size: 18px;
                 font-weight: 400;
-                line-height: 26.66px;
+                line-height: 27px;
                 letter-spacing: 0.1em;
                 text-transform: uppercase;
                 padding: 4% 0;
@@ -654,19 +674,19 @@ body {
             //single-photos.php
             .single-photo {
                 
-                    .single-photo-txt {
-                        
-                        h2 {
-                            
-                        }
-                        p {
-                            
-                        }
-                    }
-                    .single-photo-img {
+                .single-photo-txt {
                     
+                    h2 {
+                        
+                    }
+                    p {
+                        
                     }
                 }
+                .single-photo-img {
+                
+                }
+                
             }
             .single-contact {
             
@@ -764,5 +784,5 @@ body {
 
             }
         } // footer
-    // body
+    }// body
 }

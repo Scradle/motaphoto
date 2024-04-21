@@ -37,6 +37,42 @@ get_header();
         </button>  
     </div>
     <div class="single-contact-right">
+        <?php
+            // Récupération des données avec ACF
+            $next_post = get_next_post();
+            $prev_post = get_previous_post();
+
+            // Récupération de l'URL de l'image ACF pour le prochain post
+            $next_post_image = '';
+            if ($next_post) {
+                $next_post_image = get_field('photo', $next_post->ID);
+            }
+
+            // Récupération de l'URL de l'image ACF pour le post précédent
+            $prev_post_image = '';
+            if ($prev_post) {
+                $prev_post_image = get_field('photo', $prev_post->ID);
+            }
+        ?>
+        <div class="thumbnails-navigation">
+            <div class="thumbnail">
+                <?php if ($next_post_image) : ?>
+                    <img src="<?php echo esc_url($next_post_image); ?>" alt="Thumbnail">
+                <?php endif; ?>
+            </div>
+            <div  class="arrows">
+                <?php if ($prev_post) : ?>
+                    <a href="<?php echo get_permalink($prev_post->ID); ?>" class="prev-post">
+                        <img class="left-arrow-nav" src="<?php echo get_template_directory_uri() . './assets/images/Icon_left_arrow.png'; ?> " alt="flêche de navigation gauche">
+                    </a>
+                <?php endif; ?>
+                <?php if ($next_post) : ?>
+                    <a href="<?php echo get_permalink($next_post->ID); ?>" class="next-post">
+                        <img class="right-arrow-nav" src="<?php echo get_template_directory_uri() . './assets/images/Icon_right_arrow.png'; ?> " alt="flêche de navigation droite">
+                    </a>
+                <?php endif; ?>
+            </div>
+        </div>
     </div>
 </section>
 <section class="single-suggestion">

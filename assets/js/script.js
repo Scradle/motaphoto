@@ -38,6 +38,10 @@ document.addEventListener('DOMContentLoaded', function() {
         specificBtn.addEventListener('click', function(event) {
             event.preventDefault(); // Empêcher le comportement par défaut du lien
             modal.style.display = 'flex'; // Afficher la modale
+            modalContent.classList.add('fadeIn');
+            setTimeout(function() {
+                modalContent.classList.remove('fadeIn');
+            }, 1000);
             var elements = document.querySelectorAll('.wpcf7-form-control');
             // Vérifiez s'il existe au moins trois éléments avec cette classe
             if (elements.length >= 3) {
