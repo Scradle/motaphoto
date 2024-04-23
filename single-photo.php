@@ -124,7 +124,7 @@ get_header();
                     $related_posts_query->the_post();
                     $image = get_field('photo');
                     if (!empty($image)) {
-                        echo '<a href="#"><img src="' . $image . '" alt="' . $image . '"></a>';
+                        echo '<a href="' . get_permalink() . '"><img src="' . $image . '" alt="' . $image . '"></a>';
                     }
                 }
                 wp_reset_postdata();

@@ -278,22 +278,167 @@ body {
             }
         }
         .single-gallery {
-            padding-top: 2vh;
+            padding-top: 3vh;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap:20px;
-            .img-gallery {
-                width: 40%; 
-                overflow: hidden; 
-                position: relative; 
-                aspect-ratio: 1;
-                a {                   
-                    img {
-                        height: 100%;
-                        width: 100%;
-                        object-fit: cover;
+            flex-direction: column;
+            width:80%;
+            margin: 0  auto;
+            .selects {
+                display: flex;
+                justify-content: space-between;
+                padding: 1%;
+                .selects-left{
+                    display: flex;
+                    justify-content: space-between;
+                    width: 49%;
+                    .select-categories {
+                        border: 1px solid $color__dark-grey;
+                        border-radius: 10px;
+                        background-color: $color__white;
+                        padding: 12px;
+                        font-family: Poppins;
+                        font-size: 12px;
+                        font-weight: 500;
+                        line-height: 18px;
+                        letter-spacing: 0.03em;
+                        text-align: left;
+                        width: 260px;
+                        text-transform: uppercase;
+                        transition: all 0.3s ease;
+                        option  {
+                            text-transform: none;
+                            background-color: transparent;
+                            border: none;
+                        }
+                        option:hover  {
+                            background-color: #FE5858 !important;
+                        }
+                        option:focus  {
+                            background-color: #E00000 !important;
+                        }
                     }
+                    .select-formats {
+                        border: 1px solid $color__dark-grey;
+                        border-radius: 10px;
+                        background-color: $color__white;
+                        padding: 12px;
+                        font-family: Poppins;
+                        font-size: 12px;
+                        font-weight: 500;
+                        line-height: 18px;
+                        letter-spacing: 0.03em;
+                        text-align: left;
+                        width: 260px;
+                        text-transform: uppercase;
+                        option  {
+                            text-transform: none;
+
+                        }
+                    }
+                }
+                .selects-right{
+                    .select-dates {
+                        border: 1px solid $color__dark-grey;
+                        border-radius: 10px;
+                        background-color: $color__white;
+                        padding: 12px;
+                        font-family: Poppins;
+                        font-size: 12px;
+                        font-weight: 500;
+                        line-height: 18px;
+                        letter-spacing: 0.03em;
+                        text-align: left;
+                        width: 260px;
+                        text-transform: uppercase;
+                        option  {
+                            text-transform: none;
+
+                        }
+                    }
+                }
+            }
+            .photo-gallery{
+                padding-top: 2vh;
+                display: flex;
+                flex-wrap: wrap;
+                margin : 0 auto;
+                gap:15px;
+                width:100%;
+                justify-content: center;
+                .img-gallery {
+                    width: 48%; 
+                    overflow: hidden; 
+                    position: relative; 
+                    aspect-ratio: 1;  
+                    .img-gallery-solo { 
+                        position: relative;
+                        aspect-ratio: 1;
+                        img {
+                            height: 100%;
+                            width: 100%;
+                            object-fit: cover;
+                        }
+                    }
+
+
+
+                    .img-hoverbox {
+                        opacity: 0;
+                        transition: opacity 0.6s ease;
+                        .img-hoverbox-veil {
+                        top: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: $color__black;
+                        opacity: 0.6;
+                        position: absolute;
+                        }
+                        .img-icon-fullscreen {
+                            top: 5%;
+                            position: absolute;
+                            right: 5%;
+                            cursor: pointer;
+                        }
+                        a{
+                            .img-icon-eye {
+                                top: 45%;
+                                position: absolute;
+                                left: 45%;
+                                cursor: pointer;
+                            }
+                        }
+                        .img-title{
+                            font-family: Poppins;
+                            font-size: 14px;
+                            font-weight: 400;
+                            line-height: 21px;
+                            color: $color__white;
+                            bottom: 5%;
+                            position: absolute;
+                            left: 5%;
+                            text-transform: uppercase;
+                        }
+                        .img-category {
+                            font-family: Space Mono;
+                            font-size: 14px;
+                            font-weight: 400;
+                            line-height: 20px;
+                            letter-spacing: 0.1em;
+                            color: $color__white;
+                            bottom: 5%;
+                            position: absolute;
+                            right: 5%;
+                            text-transform: uppercase;
+                        }
+                    }
+                    .img-hoverbox:hover {
+                        opacity: 1;
+                    }
+                    
+
+
+                        
+                    
                 }
             }
         }
@@ -341,8 +486,7 @@ body {
                 padding-bottom: 3%;
                 h1 {
                     font-family: 'Space Mono';
-                    //font-size: 66px;
-                    font-size: clamp(3vw, 7vw, 66px);
+                    font-size: 66px;
                     font-style: italic;
                     font-weight: 500;
                     line-height: 58px;
@@ -450,7 +594,7 @@ body {
                 display: flex;
                 flex-wrap: wrap;
                 margin : 0 auto;
-                gap: 15px;
+                gap: 20px;
                 padding-bottom: 8%;
                 a {
                     width: 48%;
@@ -650,11 +794,24 @@ body {
                 }
             }
             .single-gallery {
-                
-                .img-gallery {
-                    width: 80%;
-                    a {                   
-                        img {
+                .selects{
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 20px;
+                    .selects-left {
+                        flex-direction: column;
+                        width: auto;
+                        gap: 20px;
+                    }
+                }
+                .photo-gallery {
+                    .img-gallery {
+                        width: 100%;
+                        a {   
+                            img {
+                                
+                            }
+
                             
                         }
                     }
@@ -680,8 +837,7 @@ body {
                     border-bottom:none;
                     display:unset;
                     h1 {
-                        //font-size: 46px !important;
-                        max-width: 100%;
+                        font-size: 46px !important;
                     }
                     p {
                         

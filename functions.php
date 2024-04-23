@@ -23,8 +23,6 @@ function theme_enqueue_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_scripts' );
 
-
-
 //Enregistrer les menus wordpress
 function register_my_menus() {
     register_nav_menus(
@@ -50,6 +48,8 @@ function disabled_gutenberg_cpt( $use_block_editor, $post_type ) {
     return $use_block_editor;
 }
 add_filter( 'use_block_editor_for_post_type', 'disabled_gutenberg_cpt', 10, 2 );
+
+/******************************************************************************************************************/
 
 // Création d'un custom post type pour les photos
 function create_custom_photo_post() {
@@ -140,7 +140,9 @@ function create_type_taxonomy() {
 }
 add_action( 'init', 'create_type_taxonomy' );
 
-// Enregistrer la fonction pour charger les photos via AJAX
+/**************************************************************************************************************/
+
+// Enregistrer la fonction pour charger plus de photos via AJAX
 function load_more_photos() {
     $args = array(
         'post_type' => 'photo',
@@ -149,12 +151,13 @@ function load_more_photos() {
         'orderby'=> 'date',
         'offset' => $_POST['offset'],
     );
+    
     $custom_posts = new WP_Query($args);
 
     if ($custom_posts->have_posts()) :
         while ($custom_posts->have_posts()) : $custom_posts->the_post();
             $photo = get_field('photo');
-            echo '<div class="img-gallery"><a href="' . get_permalink() . '"><img src="' . $photo . '" alt="Photo '.get_the_title().'"></a></div>';
+            echo '<div class="img-gallery"><a href="' . get_permalink() . '"><img src="' . $photo . '" alt="Photo ' . get_the_title() . '"></a></div>';
         endwhile;
         wp_reset_postdata();
     else :
@@ -166,16 +169,20 @@ function load_more_photos() {
 add_action('wp_ajax_load_more_photos', 'load_more_photos');
 add_action('wp_ajax_nopriv_load_more_photos', 'load_more_photos');
 
-//Pour  obtenir  le  nombre  totale  de  photos dispo via AJAX
+// Obtenir le nombre total de photos disponibles via AJAX
 function get_total_photo_count() {
     $args = array(
         'post_type' => 'photo',
         'posts_per_page' => -1, // Récupérer tous les posts
     );
+    
     $custom_query = new WP_Query($args);
     $total_count = $custom_query->found_posts;
     wp_send_json_success($total_count);
 }
 add_action('wp_ajax_get_total_photo_count', 'get_total_photo_count');
 add_action('wp_ajax_nopriv_get_total_photo_count', 'get_total_photo_count');
+
+
+/***********************************************************************************************************************/
 

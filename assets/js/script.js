@@ -112,7 +112,6 @@ document.addEventListener('DOMContentLoaded', function() {
             };
             xhr.send();
         }
-
         // Charger le nombre total d'images au chargement de la page
         getTotalPhotoCount(function(totalImages) {
             // Vérifier si le bouton doit être caché au chargement de la page
@@ -122,13 +121,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         loadMoreBtn.addEventListener('click', function() {
+
+            var category = document.querySelector('.select-categories').value;
+            var format = document.querySelector('.select-formats').value;
+            var date = document.querySelector('.select-dates').value;
+
             var xhr = new XMLHttpRequest();
             xhr.open('POST', script_params.ajaxurl, true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var response = xhr.responseText;
-                    document.querySelector('.single-gallery').insertAdjacentHTML('beforeend', response);
+                    document.querySelector('.photo-gallery').insertAdjacentHTML('beforeend', response);
                     offset += 8; // Incrémenter l'offset pour les prochaines photos
 
                     // Charger le nombre total d'images à nouveau
@@ -140,13 +144,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 }
             };
-            xhr.send('action=load_more_photos&offset=' + offset);
+            xhr.send('action=load_more_photos&offset=' + offset + '&category=' + category + '&format=' + format + '&date=' + date);
         });
     }
 });
-
-
-
 
 /*Gestion de  la modale  pour le mini  menu*****************************************************************************/
 
@@ -194,3 +195,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+/*Gestion des selects*********************************************************************************/
+
+
+
