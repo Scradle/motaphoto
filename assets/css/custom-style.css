@@ -31,6 +31,7 @@
   font-style: normal;
 }
 /*variables*****************************************************************************/
+/*mixins*****************************************************************************/
 /*animations*****************************************************************************/
 @keyframes fadeIn {
   from {
@@ -557,16 +558,70 @@ body .site-content .single-suggestion .single-suggestion-imgs {
   gap: 20px;
   padding-bottom: 8%;
 }
-body .site-content .single-suggestion .single-suggestion-imgs a {
+body .site-content .single-suggestion .single-suggestion-imgs .single-suggestion-solo {
   width: 48%;
   overflow: hidden;
   aspect-ratio: 1;
+  position: relative;
 }
-body .site-content .single-suggestion .single-suggestion-imgs a img {
+body .site-content .single-suggestion .single-suggestion-imgs .single-suggestion-solo .single-suggestion-img {
+  aspect-ratio: 1;
+}
+body .site-content .single-suggestion .single-suggestion-imgs .single-suggestion-solo .single-suggestion-img img {
   height: 100%;
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+body .site-content .single-suggestion .single-suggestion-imgs .single-suggestion-solo .img-hoverbox {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+body .site-content .single-suggestion .single-suggestion-imgs .single-suggestion-solo .img-hoverbox .img-hoverbox-veil {
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  opacity: 0.6;
+  position: absolute;
+}
+body .site-content .single-suggestion .single-suggestion-imgs .single-suggestion-solo .img-hoverbox .img-icon-fullscreen {
+  top: 5%;
+  position: absolute;
+  right: 5%;
+  cursor: pointer;
+}
+body .site-content .single-suggestion .single-suggestion-imgs .single-suggestion-solo .img-hoverbox a .img-icon-eye {
+  top: 45%;
+  position: absolute;
+  left: 45%;
+  cursor: pointer;
+}
+body .site-content .single-suggestion .single-suggestion-imgs .single-suggestion-solo .img-hoverbox .img-title {
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: #ffffff;
+  bottom: 5%;
+  position: absolute;
+  left: 5%;
+  text-transform: uppercase;
+}
+body .site-content .single-suggestion .single-suggestion-imgs .single-suggestion-solo .img-hoverbox .img-category {
+  font-family: Space Mono;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+  bottom: 5%;
+  position: absolute;
+  right: 5%;
+  text-transform: uppercase;
+}
+body .site-content .single-suggestion .single-suggestion-imgs .single-suggestion-solo .img-hoverbox:hover {
+  opacity: 1;
 }
 body .site-footer {
   max-width: 1440px;

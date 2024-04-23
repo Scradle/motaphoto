@@ -87,7 +87,7 @@ get_header();
 <section class="single-suggestion">
     <h3>Vous aimerez aussi</h3>
     <div  class= "single-suggestion-imgs">
-    <?php
+        <?php
         $categorie = get_field('categorie');
         $format = get_field('format');
         $type = get_field('type');
@@ -122,9 +122,12 @@ get_header();
                 
                 while ($related_posts_query->have_posts()) {
                     $related_posts_query->the_post();
-                    $image = get_field('photo');
-                    if (!empty($image)) {
-                        echo '<a href="' . get_permalink() . '"><img src="' . $image . '" alt="' . $image . '"></a>';
+                    $photo = get_field('photo');
+                    if (!empty($photo)) {
+                        echo '<div class="single-suggestion-solo">';
+                        echo '<div class="single-suggestion-img"><img src="' . $photo . '" alt="' . get_the_title() . '"></div>';
+                        get_template_part( 'templates-parts/img-hoverbox' ); // intégration hoverbox 
+                        echo '</div>';
                     }
                 }
                 wp_reset_postdata();
