@@ -10,6 +10,7 @@
         ?>
     </div> <!-- .site-info -->
     <?php get_template_part( 'templates-parts/contact-modal' ); ?> <!-- intégration modale de contact -->
+    <?php get_template_part( 'templates-parts/lightbox' ); ?> <!-- intégration lightbox -->
 </footer> <!-- #colophon -->
 
 <?php wp_footer(); ?>

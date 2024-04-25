@@ -68,6 +68,7 @@
 /*body**********************************************************************************/
 body {
   margin: 0;
+  /*footer.php**********************************************************************************************************************/
 }
 body * {
   text-decoration: none;
@@ -229,6 +230,8 @@ body .site-content {
   max-width: 1440px;
   min-width: 375px;
   margin: 0 auto;
+  /*front-page.php************************************************************************************/
+  /*single-photos.php****************************************************************************************/
 }
 body .site-content .home-hero {
   max-width: 1440px;
@@ -448,10 +451,10 @@ body .site-content .single-photo .single-photo-txt {
 }
 body .site-content .single-photo .single-photo-txt h1 {
   font-family: "Space Mono";
-  font-size: 66px;
+  font-size: clamp(46px, 3vw, 66px);
   font-style: italic;
   font-weight: 500;
-  line-height: 58px;
+  line-height: 90px;
   text-transform: uppercase;
   max-width: 50%;
 }
@@ -751,8 +754,106 @@ body .site-footer .contact-modal .modal-content.fadeOut {
 body .site-footer .contact-modal .modal-content.slideOut {
   animation: slideInLeft 1s ease forwards;
 }
+body .site-footer .lightbox {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+body .site-footer .lightbox .lightbox-veil {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+body .site-footer .lightbox .lightbox-content {
+  z-index: 2001;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2%;
+}
+body .site-footer .lightbox .lightbox-content .lightbox-prev {
+  cursor: pointer;
+}
+body .site-footer .lightbox .lightbox-content .lightbox-img-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  height: 80%;
+}
+body .site-footer .lightbox .lightbox-content .lightbox-img-div img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+body .site-footer .lightbox .lightbox-content .lightbox-next {
+  cursor: pointer;
+}
+body .site-footer .lightbox .lightbox-content .lightbox-info .lightbox-img-title {
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: #ffffff;
+  bottom: 5%;
+  position: absolute;
+  left: 5%;
+  text-transform: uppercase;
+}
+body .site-footer .lightbox .lightbox-content .lightbox-info .lightbox-img-category {
+  font-family: Space Mono;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+  bottom: 5%;
+  position: absolute;
+  right: 5%;
+  text-transform: uppercase;
+}
+body .site-footer .lightbox .lightbox-content .lightbox-toggle-cross {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: #ffffff;
+  justify-content: center;
+}
+body .site-footer .lightbox .lightbox-content .lightbox-toggle-cross .line1 {
+  transform: translateY(8px) rotate(45deg);
+  width: 40px;
+  margin-block: 6px;
+  height: 3px;
+  background-color: #ffffff;
+}
+body .site-footer .lightbox .lightbox-content .lightbox-toggle-cross .line2 {
+  transform: translateY(-8px) rotate(-45deg);
+  width: 40px;
+  margin-block: 6px;
+  height: 3px;
+  background-color: #ffffff;
+}
 
-/*media queries**************************************************************************************/
+/*media queries***********************************************************************************************************/
 @media all and (max-width: 768px) {
   body .site-header .site-branding {
     height: 72px;
@@ -797,9 +898,6 @@ body .site-footer .contact-modal .modal-content.slideOut {
     border-bottom: none;
     display: unset;
   }
-  body .site-content .single-photo .single-photo-txt h1 {
-    font-size: 46px !important;
-  }
   body .site-content .single-photo .single-photo-img {
     width: 80%;
   }
@@ -834,7 +932,7 @@ body .site-footer .contact-modal .modal-content.slideOut {
     flex-direction: column;
     justify-content: center;
   }
-  body .site-content .single-suggestion .single-suggestion-imgs a {
+  body .site-content .single-suggestion .single-suggestion-imgs .single-suggestion-solo {
     width: 100%;
   }
   body .site-footer .site-info .menu-footer-menu-container ul {

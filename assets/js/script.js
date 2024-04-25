@@ -196,7 +196,41 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-/*Gestion des selects*********************************************************************************/
+/*Gestion de la lightbox*********************************************************************************/
 
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('img-icon-fullscreen')) {
+        var imgHoverbox = event.target.closest('.img-hoverbox');
+        var imageUrl = imgHoverbox.dataset.imageUrl;
+        var imageTitle = imgHoverbox.dataset.imageTitle;
+        var imageCategory = imgHoverbox.dataset.imageCategory;
+
+        // Ouvrir la lightbox avec l'URL de l'image et ses informations
+        openLightbox(imageUrl, imageTitle, imageCategory);
+    }
+
+    // Fermer la lightbox en cliquant sur la croix
+    if (event.target.classList.contains('lightbox-toggle-cross')) {
+        closeLightbox();
+    }
+});
+
+function openLightbox(imageUrl, imageTitle, imageCategory) {
+    // Code pour ouvrir la lightbox avec l'URL de l'image stockée dans img-hoverbox
+    var lightboxContent = document.querySelector('.lightbox-img-div');
+    lightboxContent.innerHTML = '<img src="' + imageUrl + '" alt="Photo">';
+    var lightbox = document.getElementById('lightbox');
+    lightbox.style.display = 'flex';
+
+    // Afficher les informations de l'image dans lightbox-info
+    var lightboxInfo = document.querySelector('.lightbox-info');
+    lightboxInfo.innerHTML = '<div class="lightbox-img-title">' + imageTitle + '</div>' +
+                             '<div class="lightbox-img-category">' + imageCategory + '</div>';
+}
+
+function closeLightbox() {
+    var lightbox = document.getElementById('lightbox');
+    lightbox.style.display = 'none';
+}
 
 
