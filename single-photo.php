@@ -132,7 +132,7 @@ get_header();
                             // Ajoute l'ID de la suggestion au tableau des suggestions déjà récupérées
                             $suggested_post_ids[] = $post_id;
                             echo '<div class="single-suggestion-solo">';
-                            echo '<div class="single-suggestion-img"><img src="' . $photo . '" alt="' . get_the_title() . '"></div>';
+                            echo '<div class="single-suggestion-img"><img class="photo-div" src="' . $photo . '" alt="' . get_the_title() . '"></div>';
                             get_template_part('templates-parts/img-hoverbox'); // Intégration hoverbox
                             echo '</div>';
                         }

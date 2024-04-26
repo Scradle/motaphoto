@@ -53,11 +53,12 @@ get_header();
         $custom_posts = new WP_Query($args);
 
         if ($custom_posts->have_posts()) :
+
             while ($custom_posts->have_posts()) : $custom_posts->the_post();
         ?>
         <div class= "img-gallery">
             <div class="img-gallery-solo">
-                <?php $photo = get_field('photo'); echo '<img src="' . $photo . '" alt="Photo '.get_the_title().'">' ?>
+                <?php $photo = get_field('photo'); echo '<img class="photo-div" src="' . $photo . '" alt="Photo '.get_the_title().'">' ?>
             </div>
             <?php get_template_part( 'templates-parts/img-hoverbox' ); ?> <!-- intégration hoverbox -->
         </div>

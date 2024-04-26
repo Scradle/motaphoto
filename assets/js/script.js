@@ -216,6 +216,28 @@ document.addEventListener('click', function(event) {
 });
 
 function openLightbox(imageUrl, imageTitle, imageCategory) {
+    // indexation de  toutes les images  dans la  div
+    var imagesInSameDiv = document.querySelectorAll('.photo-div');
+    var currentIndex = 0;
+
+    // Afficher des informations sur les images dans la console
+    console.log("Nombre d'images trouvées dans la même div:", imagesInSameDiv.length);
+    imagesInSameDiv.forEach(function(image, index) {
+        console.log("Image", index + 1, "URL:", image.src);
+    });
+
+    // Trouver l'index de l'image actuellement affichée
+    for (var i = 0; i < imagesInSameDiv.length; i++) {
+        if (imagesInSameDiv[i].src === imageUrl) {
+            currentIndex = i;
+            break;
+        }
+    }
+
+    // Afficher des informations sur l'image actuellement affichée dans la console
+    console.log("Index de l'image actuellement affichée:", currentIndex);
+    console.log("URL de l'image actuellement affichée:", imageUrl);
+
     // Code pour ouvrir la lightbox avec l'URL de l'image stockée dans img-hoverbox
     var lightboxContent = document.querySelector('.lightbox-img-div');
     lightboxContent.innerHTML = '<img src="' + imageUrl + '" alt="Photo">';
@@ -226,11 +248,27 @@ function openLightbox(imageUrl, imageTitle, imageCategory) {
     var lightboxInfo = document.querySelector('.lightbox-info');
     lightboxInfo.innerHTML = '<div class="lightbox-img-title">' + imageTitle + '</div>' +
                              '<div class="lightbox-img-category">' + imageCategory + '</div>';
+
+    // Ajouter des écouteurs d'événements pour les boutons "prev" et "next"
+    document.querySelector('.lightbox-prev').addEventListener('click', function() {
+        currentIndex = (currentIndex - 1 + imagesInSameDiv.length) % imagesInSameDiv.length;
+        showImage(imagesInSameDiv[currentIndex]);
+    });
+
+    document.querySelector('.lightbox-next').addEventListener('click', function() {
+        currentIndex = (currentIndex + 1) % imagesInSameDiv.length;
+        showImage(imagesInSameDiv[currentIndex]);
+    });
 }
 
+// Fonction pour afficher une image dans la lightbox
+function showImage(image, currentIndex) {
+    var lightboxContent = document.querySelector('.lightbox-img-div');
+    lightboxContent.innerHTML = '<img src="' + image.src + '" alt="Photo">';
+}
+
+// fermeture de la lightbox
 function closeLightbox() {
     var lightbox = document.getElementById('lightbox');
     lightbox.style.display = 'none';
 }
-
-

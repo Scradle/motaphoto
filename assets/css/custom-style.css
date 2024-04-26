@@ -215,6 +215,7 @@ body .site-header .mini-menu-modal .mini-navigation ul {
   display: flex;
   flex-direction: column;
   gap: 50px;
+  text-align: center;
 }
 body .site-header .mini-menu-modal .mini-navigation ul li {
   font-family: "Space Mono";
@@ -783,19 +784,25 @@ body .site-footer .lightbox .lightbox-content {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 2%;
 }
 body .site-footer .lightbox .lightbox-content .lightbox-prev {
   cursor: pointer;
 }
-body .site-footer .lightbox .lightbox-content .lightbox-img-div {
+body .site-footer .lightbox .lightbox-content .lightbox-img {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
   width: 80%;
   height: 80%;
 }
-body .site-footer .lightbox .lightbox-content .lightbox-img-div img {
+body .site-footer .lightbox .lightbox-content .lightbox-img .lightbox-img-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  max-height: 100%;
+}
+body .site-footer .lightbox .lightbox-content .lightbox-img .lightbox-img-div img {
   max-width: 100%;
   max-height: 100%;
   width: auto;
@@ -803,31 +810,30 @@ body .site-footer .lightbox .lightbox-content .lightbox-img-div img {
   -o-object-fit: contain;
      object-fit: contain;
 }
-body .site-footer .lightbox .lightbox-content .lightbox-next {
-  cursor: pointer;
+body .site-footer .lightbox .lightbox-content .lightbox-img .lightbox-info {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
 }
-body .site-footer .lightbox .lightbox-content .lightbox-info .lightbox-img-title {
+body .site-footer .lightbox .lightbox-content .lightbox-img .lightbox-info .lightbox-img-title {
   font-family: Poppins;
   font-size: 14px;
   font-weight: 400;
   line-height: 21px;
   color: #ffffff;
-  bottom: 5%;
-  position: absolute;
-  left: 5%;
   text-transform: uppercase;
 }
-body .site-footer .lightbox .lightbox-content .lightbox-info .lightbox-img-category {
+body .site-footer .lightbox .lightbox-content .lightbox-img .lightbox-info .lightbox-img-category {
   font-family: Space Mono;
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
   letter-spacing: 0.1em;
   color: #ffffff;
-  bottom: 5%;
-  position: absolute;
-  right: 5%;
   text-transform: uppercase;
+}
+body .site-footer .lightbox .lightbox-content .lightbox-next {
+  cursor: pointer;
 }
 body .site-footer .lightbox .lightbox-content .lightbox-toggle-cross {
   display: flex;
@@ -837,6 +843,9 @@ body .site-footer .lightbox .lightbox-content .lightbox-toggle-cross {
   background-color: transparent;
   color: #ffffff;
   justify-content: center;
+  position: absolute;
+  top: 6%;
+  right: 5%;
 }
 body .site-footer .lightbox .lightbox-content .lightbox-toggle-cross .line1 {
   transform: translateY(8px) rotate(45deg);

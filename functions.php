@@ -158,7 +158,7 @@ function load_more_photos() {
         while ($custom_posts->have_posts()) : $custom_posts->the_post();
             $photo = get_field('photo');
             echo '<div class="img-gallery">';
-            echo '<div class="img-gallery-solo"><img src="' . $photo . '" alt="Photo ' . get_the_title() . '"></div>';
+            echo '<div class="img-gallery-solo"><img class="photo-div" src="' . $photo . '" alt="Photo ' . get_the_title() . '"></div>';
             get_template_part( 'templates-parts/img-hoverbox' ); // intégration hoverbox 
             echo '</div>';
         endwhile;
