@@ -11,6 +11,8 @@ define('ASSETS_VERSION', $assets_version);
 function theme_enqueue_scripts() {
     // Enregistrer les scripts
     wp_enqueue_script( 'script', THEME_URI . '/assets/js/script.js', array(), ASSETS_VERSION, true );  
+    wp_enqueue_script( 'ajax-script', THEME_URI . '/assets/js/ajax-script.js', array(), ASSETS_VERSION, true );  
+
     wp_localize_script('script', 'script_params', [
 		'ajaxurl' 					=> admin_url( 'admin-ajax.php' ),
 	]); 
@@ -188,4 +190,65 @@ add_action('wp_ajax_nopriv_get_total_photo_count', 'get_total_photo_count');
 
 
 /***********************************************************************************************************************/
+// Gestion des selects
 
+function custom_query_ajax() {
+    if( isset($_POST['orderby']) && isset($_POST['category']) && isset($_POST['format']) ) {
+        $orderby = $_POST['orderby'];
+        $category = $_POST['category'];
+        $format = $_POST['format'];
+
+        //filter par date de parution 
+        $args = array(
+            'post_type' => 'photo', 
+            'posts_per_page' => -1,
+            'orderby'=> 'date',
+            'order' => $orderby
+        );
+
+        // Filtrer par catégorie si sélectionnée
+        if (!empty($category)) {
+            $args['tax_query'][] = array(
+                'taxonomy' => 'categorie',
+                'field'    => 'slug',
+                'terms'    => $category,
+            );
+        }
+
+        // Filtrer par format si sélectionné
+        if (!empty($format)) {
+            $args['tax_query'][] = array(
+                'taxonomy' => 'format',
+                'field'    => 'slug',
+                'terms'    => $format,
+            );
+        }
+
+        $custom_posts = new WP_Query($args);
+
+        if ($custom_posts->have_posts()) {
+            ob_start();
+            while ($custom_posts->have_posts()) {
+                $custom_posts->the_post();
+                ?>
+                <div class="img-gallery">
+                    <div class="img-gallery-solo">
+                        <?php $photo = get_field('photo'); ?>
+                        <img class="photo-div" src="<?php echo $photo; ?>" alt="Photo <?php echo get_the_title(); ?>">
+                    </div>
+                    <?php get_template_part('templates-parts/img-hoverbox'); ?> <!-- intégration hoverbox -->
+                </div>
+                <?php
+            }
+            wp_reset_postdata();
+            $gallery_content = ob_get_clean();
+            echo $gallery_content;
+        } else {
+            echo 'Aucun article trouvé.';
+        }
+    }
+
+    die();
+}
+add_action('wp_ajax_custom_query', 'custom_query_ajax');
+add_action('wp_ajax_nopriv_custom_query', 'custom_query_ajax');
