@@ -32,7 +32,73 @@
 }
 /*variables*****************************************************************************/
 /*mixins*****************************************************************************/
-/*animations*****************************************************************************/
+/******slim select**************************************************************************************************/
+.ss-content .select-categories {
+  background-color: #FE5858 !important;
+}
+
+.ss-content .select-formats {
+  background-color: #FE5858 !important;
+}
+
+.ss-content .select-dates {
+  background-color: #FE5858 !important;
+}
+
+.ss-open-below {
+  font-family: Poppins;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0.03em;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top: 1px solid blue;
+  border-left: none;
+  border-bottom: none;
+  border-right: none;
+  overflow: hidden;
+}
+
+.ss-content .ss-list .ss-option:hover {
+  background-color: #FE5858 !important;
+}
+
+.ss-content .ss-list .ss-option.ss-highlighted, .ss-content .ss-list .ss-option:not(.ss-disabled).ss-selected {
+  background-color: #E00000 !important;
+}
+
+.ss-placeholder {
+  color: #000000 !important;
+}
+
+body .site-content .single-gallery .selects .selects-left .select-categories:focus {
+  border: 1px solid blue;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+body .site-content .single-gallery .selects .selects-left .select-formats:focus {
+  border: 1px solid blue;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+body .site-content .single-gallery .selects .selects-right .select-dates:focus {
+  border: 1px solid blue;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/*animations***************************************************************************************************/
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -273,7 +339,7 @@ body .site-content .single-gallery .selects .selects-left {
   width: 49%;
 }
 body .site-content .single-gallery .selects .selects-left .select-categories {
-  border: 1px solid #C4C4C4;
+  border: 1px solid #313144;
   border-radius: 10px;
   background-color: #ffffff;
   padding: 12px;
@@ -285,21 +351,14 @@ body .site-content .single-gallery .selects .selects-left .select-categories {
   text-align: left;
   width: 260px;
   text-transform: uppercase;
-  transition: all 0.3s ease;
 }
-body .site-content .single-gallery .selects .selects-left .select-categories option {
-  text-transform: none;
-  background-color: transparent;
-  border: none;
-}
-body .site-content .single-gallery .selects .selects-left .select-categories option:hover {
-  background-color: #FE5858 !important;
-}
-body .site-content .single-gallery .selects .selects-left .select-categories option:focus {
-  background-color: #E00000 !important;
+body .site-content .single-gallery .selects .selects-left .select-categories:active {
+  border: 1px solid blue;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 body .site-content .single-gallery .selects .selects-left .select-formats {
-  border: 1px solid #C4C4C4;
+  border: 1px solid #313144;
   border-radius: 10px;
   background-color: #ffffff;
   padding: 12px;
@@ -316,7 +375,7 @@ body .site-content .single-gallery .selects .selects-left .select-formats option
   text-transform: none;
 }
 body .site-content .single-gallery .selects .selects-right .select-dates {
-  border: 1px solid #C4C4C4;
+  border: 1px solid #313144;
   border-radius: 10px;
   background-color: #ffffff;
   padding: 12px;
@@ -876,6 +935,9 @@ body .site-footer .lightbox .lightbox-content .lightbox-toggle-cross .line2 {
   body .site-content .home-hero h1 {
     -webkit-text-stroke: 1px #ffffff;
     top: 30%;
+  }
+  body .site-content .single-gallery {
+    width: 90%;
   }
   body .site-content .single-gallery .selects {
     flex-direction: column;

@@ -212,3 +212,29 @@ function closeLightbox() {
     var lightbox = document.getElementById('lightbox');
     lightbox.style.display = 'none';
 }
+
+/*Slim Select*****************************************************************************************/
+
+new SlimSelect({
+    select: '#select-categories',
+    settings: {
+        placeholderText: 'Catégories',
+        showSearch: false,
+      }
+})
+
+new SlimSelect({
+    select: '#select-formats',
+    settings: {
+        placeholderText: 'Formats',
+        showSearch: false,
+    }
+})
+
+new SlimSelect({
+    select: '#select-dates',
+    settings: {
+        placeholderText: 'Trier par',
+        showSearch: false,
+    }
+})

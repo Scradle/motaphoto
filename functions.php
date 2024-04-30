@@ -11,7 +11,10 @@ define('ASSETS_VERSION', $assets_version);
 function theme_enqueue_scripts() {
     // Enregistrer les scripts
     wp_enqueue_script( 'script', THEME_URI . '/assets/js/script.js', array(), ASSETS_VERSION, true );  
-    wp_enqueue_script( 'ajax-script', THEME_URI . '/assets/js/ajax-script.js', array(), ASSETS_VERSION, true );  
+    wp_enqueue_script( 'ajax-script', THEME_URI . '/assets/js/ajax-script.js', array(), ASSETS_VERSION, true ); 
+    //import tomSelect
+    wp_enqueue_style( 'tomSelect-css', 'https://cdnjs.cloudflare.com/ajax/libs/slim-select/2.8.2/slimselect.css');
+    wp_enqueue_script( 'tomSelect-js', 'https://cdnjs.cloudflare.com/ajax/libs/slim-select/2.8.2/slimselect.min.js'); 
 
     wp_localize_script('script', 'script_params', [
 		'ajaxurl' 					=> admin_url( 'admin-ajax.php' ),
@@ -144,49 +147,49 @@ add_action( 'init', 'create_type_taxonomy' );
 
 /**************************************************************************************************************/
 
-// Enregistrer la fonction pour charger plus de photos via AJAX
-function load_more_photos() {
-    $args = array(
-        'post_type' => 'photo',
-        'posts_per_page' => 8,
-        'order' => 'ASC',
-        'orderby'=> 'date',
-        'offset' => $_POST['offset'],
-    );
+// // Enregistrer la fonction pour charger plus de photos via AJAX
+// function load_more_photos() {
+//     $args = array(
+//         'post_type' => 'photo',
+//         'posts_per_page' => 8,
+//         'order' => 'ASC',
+//         'orderby'=> 'date',
+//         'offset' => $_POST['offset'],
+//     );
     
-    $custom_posts = new WP_Query($args);
+//     $custom_posts = new WP_Query($args);
 
-    if ($custom_posts->have_posts()) :
-        while ($custom_posts->have_posts()) : $custom_posts->the_post();
-            $photo = get_field('photo');
-            echo '<div class="img-gallery">';
-            echo '<div class="img-gallery-solo"><img class="photo-div" src="' . $photo . '" alt="Photo ' . get_the_title() . '"></div>';
-            get_template_part( 'templates-parts/img-hoverbox' ); // intégration hoverbox 
-            echo '</div>';
-        endwhile;
-        wp_reset_postdata();
-    else :
-        echo "Toutes les photos ont été chargées.";
-    endif;
+//     if ($custom_posts->have_posts()) :
+//         while ($custom_posts->have_posts()) : $custom_posts->the_post();
+//             $photo = get_field('photo');
+//             echo '<div class="img-gallery">';
+//             echo '<div class="img-gallery-solo"><img class="photo-div" src="' . $photo . '" alt="Photo ' . get_the_title() . '"></div>';
+//             get_template_part( 'templates-parts/img-hoverbox' ); // intégration hoverbox 
+//             echo '</div>';
+//         endwhile;
+//         wp_reset_postdata();
+//     else :
+//         echo "Toutes les photos ont été chargées.";
+//     endif;
 
-    wp_die();
-}
-add_action('wp_ajax_load_more_photos', 'load_more_photos');
-add_action('wp_ajax_nopriv_load_more_photos', 'load_more_photos');
+//     wp_die();
+// }
+// add_action('wp_ajax_load_more_photos', 'load_more_photos');
+// add_action('wp_ajax_nopriv_load_more_photos', 'load_more_photos');
 
-// Obtenir le nombre total de photos disponibles via AJAX
-function get_total_photo_count() {
-    $args = array(
-        'post_type' => 'photo',
-        'posts_per_page' => -1, // Récupérer tous les posts
-    );
+// // Obtenir le nombre total de photos disponibles via AJAX
+// function get_total_photo_count() {
+//     $args = array(
+//         'post_type' => 'photo',
+//         'posts_per_page' => -1, // Récupérer tous les posts
+//     );
     
-    $custom_query = new WP_Query($args);
-    $total_count = $custom_query->found_posts;
-    wp_send_json_success($total_count);
-}
-add_action('wp_ajax_get_total_photo_count', 'get_total_photo_count');
-add_action('wp_ajax_nopriv_get_total_photo_count', 'get_total_photo_count');
+//     $custom_query = new WP_Query($args);
+//     $total_count = $custom_query->found_posts;
+//     wp_send_json_success($total_count);
+// }
+// add_action('wp_ajax_get_total_photo_count', 'get_total_photo_count');
+// add_action('wp_ajax_nopriv_get_total_photo_count', 'get_total_photo_count');
 
 
 /***********************************************************************************************************************/
