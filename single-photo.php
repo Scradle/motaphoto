@@ -22,11 +22,14 @@ get_header();
             ]); 
         ?>
     </div>
-    <div class="single-photo-img">
-        <?php //récupération ACF
-            $photo = get_field('photo');
-            echo '<img src="' . $photo . '" alt="Photo sélectionnée">';   
-        ?>
+    <div class="single-photo-div">
+        <div class="single-photo-img">
+            <?php //récupération ACF
+                $photo = get_field('photo');
+                echo '<img src="' . $photo . '" alt="Photo sélectionnée">';   
+            ?>
+        </div>
+        <?php get_template_part( 'templates-parts/img-hoverbox' ); ?> <!-- intégration hoverbox -->
     </div>
 </section> <!-- single-photo -->
 <section class="single-contact">

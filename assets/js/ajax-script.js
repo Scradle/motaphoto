@@ -1,6 +1,6 @@
 /*Gestion des demandes Ajax*****************************************************************************/
 
-// Charger  plus  d'image  sur  front-page  à l'appui  sur le bouton
+// Charger  plus  d'image  sur  front-page  à l'appui  sur le bouton si aucun select n'est utilisé
 // document.addEventListener('DOMContentLoaded', function() {
 //     var loadMoreBtn = document.querySelector('.load-more-btn');
 //     if (loadMoreBtn) {
@@ -62,7 +62,7 @@
 
 /*Gestion des selects*********************************************************************************/
 
-// tri par categorie format et order by
+//tri par categorie format et order by
 document.addEventListener('DOMContentLoaded', function() {
     var selectDates = document.querySelector('.select-dates');
     var selectCategories = document.querySelector('.select-categories');
@@ -93,3 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
         selectFormats.addEventListener('change', updateGallery);
     }
 });
+
+
+/**************************************************************************************************************/
+

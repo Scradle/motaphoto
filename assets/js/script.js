@@ -138,15 +138,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /*Gestion de la lightbox*********************************************************************************/
 
+var currentIndex = 0; // Déclaration de currentIndex comme une variable globale
+var imagesData = []; // Tableau pour stocker les données de chaque image
+
 document.addEventListener('click', function(event) {
     if (event.target.classList.contains('img-icon-fullscreen')) {
+        var imgHoverboxes = document.querySelectorAll('.img-hoverbox');
+        imagesData = []; // Réinitialisation du tableau d'objets
+
+        // Remplir le tableau imagesData avec les données de chaque img-hoverbox
+        imgHoverboxes.forEach(function(imgHoverbox) {
+            var imageData = {
+                imageUrl: imgHoverbox.dataset.imageUrl,
+                imageTitle: imgHoverbox.dataset.imageTitle,
+                imageCategory: imgHoverbox.dataset.imageCategory
+            };
+            imagesData.push(imageData);
+        });
+
         var imgHoverbox = event.target.closest('.img-hoverbox');
         var imageUrl = imgHoverbox.dataset.imageUrl;
-        var imageTitle = imgHoverbox.dataset.imageTitle;
-        var imageCategory = imgHoverbox.dataset.imageCategory;
+        currentImageTitle = imgHoverbox.dataset.imageTitle; // Mise à jour de currentImageTitle
+        currentImageCategory = imgHoverbox.dataset.imageCategory; // Mise à jour de currentImageCategory
 
         // Ouvrir la lightbox avec l'URL de l'image et ses informations
-        openLightbox(imageUrl, imageTitle, imageCategory);
+        openLightbox(imageUrl, currentImageTitle, currentImageCategory); // Passage de currentImageTitle et currentImageCategory
     }
 
     // Fermer la lightbox en cliquant sur la croix
@@ -155,20 +171,27 @@ document.addEventListener('click', function(event) {
     }
 });
 
-function openLightbox(imageUrl, imageTitle, imageCategory) {
-    // indexation de  toutes les images  dans la  div
-    var imagesInSameDiv = document.querySelectorAll('.photo-div');
-    var currentIndex = 0;
+// Ajouter des écouteurs d'événements pour les boutons "prev" et "next"
+document.querySelector('.lightbox-prev').addEventListener('click', function() {
+    currentIndex = (currentIndex - 1 + imagesData.length) % imagesData.length;
+    showImage(imagesData[currentIndex]);
+});
 
+document.querySelector('.lightbox-next').addEventListener('click', function() {
+    currentIndex = (currentIndex + 1) % imagesData.length;
+    showImage(imagesData[currentIndex]);
+});
+
+function openLightbox(imageUrl, imageTitle, imageCategory) {
     // Afficher des informations sur les images dans la console
-    console.log("Nombre d'images trouvées dans la même div:", imagesInSameDiv.length);
-    imagesInSameDiv.forEach(function(image, index) {
-        console.log("Image", index + 1, "URL:", image.src);
+    console.log("Nombre d'images trouvées dans la même div:", imagesData.length);
+    imagesData.forEach(function(imageData, index) {
+        console.log("Image", index + 1, "URL:", imageData.imageUrl);
     });
 
     // Trouver l'index de l'image actuellement affichée
-    for (var i = 0; i < imagesInSameDiv.length; i++) {
-        if (imagesInSameDiv[i].src === imageUrl) {
+    for (var i = 0; i < imagesData.length; i++) {
+        if (imagesData[i].imageUrl === imageUrl) {
             currentIndex = i;
             break;
         }
@@ -188,23 +211,15 @@ function openLightbox(imageUrl, imageTitle, imageCategory) {
     var lightboxInfo = document.querySelector('.lightbox-info');
     lightboxInfo.innerHTML = '<div class="lightbox-img-title">' + imageTitle + '</div>' +
                              '<div class="lightbox-img-category">' + imageCategory + '</div>';
-
-    // Ajouter des écouteurs d'événements pour les boutons "prev" et "next"
-    document.querySelector('.lightbox-prev').addEventListener('click', function() {
-        currentIndex = (currentIndex - 1 + imagesInSameDiv.length) % imagesInSameDiv.length;
-        showImage(imagesInSameDiv[currentIndex]);
-    });
-
-    document.querySelector('.lightbox-next').addEventListener('click', function() {
-        currentIndex = (currentIndex + 1) % imagesInSameDiv.length;
-        showImage(imagesInSameDiv[currentIndex]);
-    });
 }
 
 // Fonction pour afficher une image dans la lightbox
-function showImage(image, currentIndex) {
+function showImage(imageData) {
     var lightboxContent = document.querySelector('.lightbox-img-div');
-    lightboxContent.innerHTML = '<img src="' + image.src + '" alt="Photo">';
+    lightboxContent.innerHTML = '<img src="' + imageData.imageUrl + '" alt="Photo">';
+    var lightboxInfo = document.querySelector('.lightbox-info');
+    lightboxInfo.innerHTML = '<div class="lightbox-img-title">' + imageData.imageTitle + '</div>' +
+                             '<div class="lightbox-img-category">' + imageData.imageCategory + '</div>';
 }
 
 // fermeture de la lightbox
@@ -212,6 +227,7 @@ function closeLightbox() {
     var lightbox = document.getElementById('lightbox');
     lightbox.style.display = 'none';
 }
+
 
 /*Slim Select*****************************************************************************************/
 

@@ -37,8 +37,8 @@ get_header();
         <div class="selects-right">
             <select  id="select-dates" class="select-dates" placeholder="Trier par" autocomplete="off">
             <option data-placeholder="true"></option>
-                <option value="ASC">À partir des plus récentes</option>
-                <option value="DESC">À partir des plus anciennes</option>
+                <option value="ASC">À partir des plus anciennes</option>
+                <option value="DESC">À partir des plus récentes</option>
             </select>
         </div>
     </div>
@@ -55,6 +55,9 @@ get_header();
         if ($custom_posts->have_posts()) :
 
             while ($custom_posts->have_posts()) : $custom_posts->the_post();
+                increment_i(); // Appel de la fonction pour incrémenter $i
+                // Récupérer la valeur actuelle de $i si nécessaire
+                $current_i = $i;
         ?>
         <div class= "img-gallery">
             <div class="img-gallery-solo">

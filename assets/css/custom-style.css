@@ -422,6 +422,7 @@ body .site-content .single-gallery .photo-gallery .img-gallery .img-hoverbox {
 }
 body .site-content .single-gallery .photo-gallery .img-gallery .img-hoverbox .img-hoverbox-veil {
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background-color: #000000;
@@ -527,15 +528,73 @@ body .site-content .single-photo .single-photo-txt p {
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
-body .site-content .single-photo .single-photo-img {
-  overflow: hidden;
+body .site-content .single-photo .single-photo-div {
   width: 49%;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  position: relative;
 }
-body .site-content .single-photo .single-photo-img img {
+body .site-content .single-photo .single-photo-div .single-photo-img {
+  overflow: hidden;
+  width: 100%;
+}
+body .site-content .single-photo .single-photo-div .single-photo-img img {
   width: 100%;
   height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
+}
+body .site-content .single-photo .single-photo-div .img-hoverbox {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+body .site-content .single-photo .single-photo-div .img-hoverbox .img-hoverbox-veil {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  opacity: 0.6;
+  position: absolute;
+}
+body .site-content .single-photo .single-photo-div .img-hoverbox .img-icon-fullscreen {
+  top: 5%;
+  position: absolute;
+  right: 5%;
+  cursor: pointer;
+}
+body .site-content .single-photo .single-photo-div .img-hoverbox a .img-icon-eye {
+  top: 45%;
+  position: absolute;
+  left: 45%;
+  cursor: pointer;
+}
+body .site-content .single-photo .single-photo-div .img-hoverbox .img-title {
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: #ffffff;
+  bottom: 5%;
+  position: absolute;
+  left: 5%;
+  text-transform: uppercase;
+}
+body .site-content .single-photo .single-photo-div .img-hoverbox .img-category {
+  font-family: Space Mono;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+  bottom: 5%;
+  position: absolute;
+  right: 5%;
+  text-transform: uppercase;
+}
+body .site-content .single-photo .single-photo-div .img-hoverbox:hover {
+  opacity: 1;
 }
 body .site-content .single-contact {
   display: flex;
@@ -642,6 +701,7 @@ body .site-content .single-suggestion .single-suggestion-imgs .single-suggestion
 }
 body .site-content .single-suggestion .single-suggestion-imgs .single-suggestion-solo .img-hoverbox .img-hoverbox-veil {
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background-color: #000000;
@@ -969,8 +1029,14 @@ body .site-footer .lightbox .lightbox-content .lightbox-toggle-cross .line2 {
     border-bottom: none;
     display: unset;
   }
-  body .site-content .single-photo .single-photo-img {
+  body .site-content .single-photo .single-photo-txt h1 {
+    line-height: 50px;
+  }
+  body .site-content .single-photo .single-photo-div {
     width: 80%;
+  }
+  body .site-content .single-photo .single-photo-div .single-photo-img {
+    width: 100%;
   }
   body .site-content .single-contact {
     width: 100%;

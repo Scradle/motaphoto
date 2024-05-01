@@ -147,7 +147,34 @@ add_action( 'init', 'create_type_taxonomy' );
 
 /**************************************************************************************************************/
 
-// // Enregistrer la fonction pour charger plus de photos via AJAX
+// Déclaration de la variable $i au niveau global
+global $i;
+$i = 0;
+
+// Fonction pour incrémenter $i et le retourner
+function increment_i() {
+    global $i;
+    $i++;
+    return $i;
+}
+
+/**************************************************************************************************************/
+
+// // Obtenir le nombre total de photos disponibles sans utilisation d'un select
+// function get_total_photo_count() {
+//     $args = array(
+//         'post_type' => 'photo',
+//         'posts_per_page' => -1, // Récupérer tous les posts
+//     );
+    
+//     $custom_query = new WP_Query($args);
+//     $total_count = $custom_query->found_posts;
+//     wp_send_json_success($total_count);
+// }
+// add_action('wp_ajax_get_total_photo_count', 'get_total_photo_count');
+// add_action('wp_ajax_nopriv_get_total_photo_count', 'get_total_photo_count');
+
+// // Enregistrer la fonction pour charger plus de photos via AJAX sans utilisation d'un select
 // function load_more_photos() {
 //     $args = array(
 //         'post_type' => 'photo',
@@ -177,34 +204,23 @@ add_action( 'init', 'create_type_taxonomy' );
 // add_action('wp_ajax_load_more_photos', 'load_more_photos');
 // add_action('wp_ajax_nopriv_load_more_photos', 'load_more_photos');
 
-// // Obtenir le nombre total de photos disponibles via AJAX
-// function get_total_photo_count() {
-//     $args = array(
-//         'post_type' => 'photo',
-//         'posts_per_page' => -1, // Récupérer tous les posts
-//     );
-    
-//     $custom_query = new WP_Query($args);
-//     $total_count = $custom_query->found_posts;
-//     wp_send_json_success($total_count);
-// }
-// add_action('wp_ajax_get_total_photo_count', 'get_total_photo_count');
-// add_action('wp_ajax_nopriv_get_total_photo_count', 'get_total_photo_count');
-
-
 /***********************************************************************************************************************/
-// Gestion des selects
 
+// Gestion des selects avec affichage des 8 prmières images  maximum
 function custom_query_ajax() {
     if( isset($_POST['orderby']) && isset($_POST['category']) && isset($_POST['format']) ) {
         $orderby = $_POST['orderby'];
         $category = $_POST['category'];
         $format = $_POST['format'];
 
+        if (empty($orderby)) {  // gère le  order by  d'origine
+            $orderby = 'ASC';
+        }
+
         //filter par date de parution 
         $args = array(
             'post_type' => 'photo', 
-            'posts_per_page' => -1,
+            'posts_per_page' => 8,
             'orderby'=> 'date',
             'order' => $orderby
         );
