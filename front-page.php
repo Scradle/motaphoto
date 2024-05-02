@@ -55,9 +55,6 @@ get_header();
         if ($custom_posts->have_posts()) :
 
             while ($custom_posts->have_posts()) : $custom_posts->the_post();
-                increment_i(); // Appel de la fonction pour incrémenter $i
-                // Récupérer la valeur actuelle de $i si nécessaire
-                $current_i = $i;
         ?>
         <div class= "img-gallery">
             <div class="img-gallery-solo">
