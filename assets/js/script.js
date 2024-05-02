@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 modalContent.classList.remove('slideIn');
             }, 1000);
-            });
+        });
     }
 
     // Écouter le clic sur le lien du bouton si .single-contact-btn est présent sur la page
@@ -76,7 +76,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1000); // Temps d'attente, correspondant à la durée de l'animation en millisecondes
     }
 
-
     // Écouter le clic en dehors de la modale pour la fermer
     window.addEventListener('click', function(event) {
         if (window.innerWidth < 769 && event.target === modalVeil) {
@@ -92,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
 /*Gestion de  la modale  pour le mini  menu*****************************************************************************/
 
 document.addEventListener('DOMContentLoaded', function() {
-    var modal = document.getElementById('mini-menu-modal');
+    var modal = document.getElementById('.mini-menu-modal');
     var specificBtn = document.querySelector('.menu-toggle');
     var specificBtnClose = document.querySelector('.menu-toggle-cross');
     var veil = document.querySelector('.mini-menu-veil');
