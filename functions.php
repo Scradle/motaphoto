@@ -146,7 +146,7 @@ add_action( 'init', 'create_type_taxonomy' );
 
 /***********************************************************************************************************************/
 
-// Gestion des selects avec affichage des 8 premières images  maximum
+// Gestion des selects 
 function custom_query_ajax() {
     $return=[];
 

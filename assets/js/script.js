@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
 /*Gestion de  la modale  pour le mini  menu*****************************************************************************/
 
 document.addEventListener('DOMContentLoaded', function() {
-    var modal = document.getElementById('.mini-menu-modal');
+    var modal = document.getElementById('mini-menu-modal');
     var specificBtn = document.querySelector('.menu-toggle');
     var specificBtnClose = document.querySelector('.menu-toggle-cross');
     var veil = document.querySelector('.mini-menu-veil');
@@ -182,12 +182,6 @@ document.querySelector('.lightbox-next').addEventListener('click', function() {
 });
 
 function openLightbox(imageUrl, imageTitle, imageCategory) {
-    // Afficher des informations sur les images dans la console
-    console.log("Nombre d'images trouvées dans la même div:", imagesData.length);
-    imagesData.forEach(function(imageData, index) {
-        console.log("Image", index + 1, "URL:", imageData.imageUrl);
-    });
-
     // Trouver l'index de l'image actuellement affichée
     for (var i = 0; i < imagesData.length; i++) {
         if (imagesData[i].imageUrl === imageUrl) {
@@ -195,11 +189,6 @@ function openLightbox(imageUrl, imageTitle, imageCategory) {
             break;
         }
     }
-
-    // Afficher des informations sur l'image actuellement affichée dans la console
-    console.log("Index de l'image actuellement affichée:", currentIndex);
-    console.log("URL de l'image actuellement affichée:", imageUrl);
-
     // Code pour ouvrir la lightbox avec l'URL de l'image stockée dans img-hoverbox
     var lightboxContent = document.querySelector('.lightbox-img-div');
     lightboxContent.innerHTML = '<img src="' + imageUrl + '" alt="Photo">';
@@ -234,6 +223,7 @@ new SlimSelect({
     select: '#select-categories',
     settings: {
         placeholderText: 'Catégories',
+        allowDeselectOption: true,
         showSearch: false,
       }
 })

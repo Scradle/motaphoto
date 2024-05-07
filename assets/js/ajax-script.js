@@ -38,22 +38,22 @@ document.addEventListener('DOMContentLoaded', function() {
             
         }
 
+        function handleSelectionChange() {
+            document.querySelector('.photo-gallery').innerHTML = '';
+            currentOffset = 0;
+            updateGallery();
+        }
+        
         loadMoreBtn.addEventListener('click', loadMorePhotos);
-        selectDates.addEventListener('change', function (){
-            document.querySelector('.photo-gallery').innerHTML = '';
-            currentOffset=0;
-            updateGallery();
+        
+        // Sélecteurs à écouter pour les changements
+        var selectorsToWatch = [selectDates, selectCategories, selectFormats];
+        
+        // Ajouter l'événement de changement à chaque sélecteur
+        selectorsToWatch.forEach(function(selector) {
+            selector.addEventListener('change', handleSelectionChange);
         });
-        selectCategories.addEventListener('change', function (){
-            document.querySelector('.photo-gallery').innerHTML = '';
-            currentOffset=0;
-            updateGallery();
-        });
-        selectFormats.addEventListener('change', function (){
-            document.querySelector('.photo-gallery').innerHTML = '';
-            currentOffset=0;
-            updateGallery();
-        });
+        
     }
 });
 

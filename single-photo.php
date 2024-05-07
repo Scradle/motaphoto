@@ -35,9 +35,7 @@ get_header();
 <section class="single-contact">
     <div class="single-contact-left">
         <p>Cette photo vous intéresse  ?</p>
-        <button class="single-contact-btn">
-            <a href="#">Contact</a>
-        </button>  
+        <button class="single-contact-btn">Contact</button>  
     </div>
     <div class="single-contact-right">
         <?php
@@ -88,7 +86,7 @@ get_header();
     </div>
 </section>
 <section class="single-suggestion">
-    <h3>Vous aimerez aussi</h3>
+    <h2>Vous aimerez aussi</h2>
     <div class="single-suggestion-imgs">
         <?php
         $current_post_id = get_the_ID(); // Récupère l'ID de l'article actuellement affiché

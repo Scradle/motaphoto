@@ -299,6 +299,7 @@ body .site-content {
   margin: 0 auto;
   /*front-page.php************************************************************************************/
   /*single-photos.php****************************************************************************************/
+  /*page.php*****************************************************************************************************************/
 }
 body .site-content .home-hero {
   max-width: 1440px;
@@ -664,7 +665,7 @@ body .site-content .single-suggestion {
   width: 80%;
   margin: 0 auto;
 }
-body .site-content .single-suggestion h3 {
+body .site-content .single-suggestion h2 {
   font-family: Space Mono;
   font-size: 18px;
   font-weight: 400;
@@ -745,6 +746,27 @@ body .site-content .single-suggestion .single-suggestion-imgs .single-suggestion
 }
 body .site-content .single-suggestion .single-suggestion-imgs .single-suggestion-solo .img-hoverbox:hover {
   opacity: 1;
+}
+body .site-content .page {
+  width: 80%;
+  margin: 0 auto;
+  padding-bottom: 3%;
+}
+body .site-content .page h1 {
+  font-family: "Space Mono";
+  font-size: clamp(46px, 3vw, 66px);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 90px;
+  text-transform: uppercase;
+  max-width: 50%;
+}
+body .site-content .page p {
+  font-family: "Poppins";
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 21px;
+  text-align: left;
 }
 body .site-footer {
   max-width: 1440px;
@@ -906,6 +928,13 @@ body .site-footer .lightbox .lightbox-content {
 }
 body .site-footer .lightbox .lightbox-content .lightbox-prev {
   cursor: pointer;
+  transition: transform 0.3s ease;
+  top: 50%;
+  left: 1%;
+  position: absolute;
+}
+body .site-footer .lightbox .lightbox-content .lightbox-prev:hover {
+  transform: scale(1.1);
 }
 body .site-footer .lightbox .lightbox-content .lightbox-img {
   display: flex;
@@ -932,7 +961,7 @@ body .site-footer .lightbox .lightbox-content .lightbox-img .lightbox-img-div im
 body .site-footer .lightbox .lightbox-content .lightbox-img .lightbox-info {
   display: flex;
   justify-content: space-between;
-  width: 80%;
+  width: 100%;
 }
 body .site-footer .lightbox .lightbox-content .lightbox-img .lightbox-info .lightbox-img-title {
   font-family: Poppins;
@@ -947,12 +976,18 @@ body .site-footer .lightbox .lightbox-content .lightbox-img .lightbox-info .ligh
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
-  letter-spacing: 0.1em;
   color: #ffffff;
   text-transform: uppercase;
 }
 body .site-footer .lightbox .lightbox-content .lightbox-next {
   cursor: pointer;
+  transition: transform 0.3s ease;
+  position: absolute;
+  top: 50%;
+  right: 1%;
+}
+body .site-footer .lightbox .lightbox-content .lightbox-next:hover {
+  transform: scale(1.1);
 }
 body .site-footer .lightbox .lightbox-content .lightbox-toggle-cross {
   display: flex;
@@ -963,8 +998,8 @@ body .site-footer .lightbox .lightbox-content .lightbox-toggle-cross {
   color: #ffffff;
   justify-content: center;
   position: absolute;
-  top: 6%;
-  right: 5%;
+  top: 2%;
+  right: 1%;
 }
 body .site-footer .lightbox .lightbox-content .lightbox-toggle-cross .line1 {
   transform: translateY(8px) rotate(45deg);

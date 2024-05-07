@@ -9,8 +9,9 @@ get_header();
 <section id="single-gallery" class="single-gallery">
     <div class="selects">
         <div class="selects-left">
-            <select id="select-categories" class="select-categories"  placeholder="Catégories" autocomplete="off">
-                <option data-placeholder="true"></option>
+            <select id="select-categories" class="select-categories" autocomplete="off">
+                <option data-placeholder="true" label=" "></option>
+                <option value="" selected hidden>&nbsp;</option>
                 <?php
                 $categories = get_terms(array(
                     'taxonomy' => 'categorie',
@@ -21,8 +22,9 @@ get_header();
                 }
                 ?>
             </select>
-            <select id="select-formats" class="select-formats" placeholder="Formats" autocomplete="off">
-            <option data-placeholder="true"></option>
+            <select id="select-formats" class="select-formats" autocomplete="off">
+                <option data-placeholder="true" label=" "></option>
+                <option value="" selected hidden>&nbsp;</option>
                 <?php
                 $formats = get_terms(array(
                     'taxonomy' => 'format',
@@ -35,8 +37,9 @@ get_header();
             </select>
         </div>
         <div class="selects-right">
-            <select  id="select-dates" class="select-dates" placeholder="Trier par" autocomplete="off">
-            <option data-placeholder="true"></option>
+            <select  id="select-dates" class="select-dates" autocomplete="off">
+                <option data-placeholder="true" label=" "></option>
+                <option value="" selected hidden>&nbsp;</option>
                 <option value="ASC">À partir des plus anciennes</option>
                 <option value="DESC">À partir des plus récentes</option>
             </select>

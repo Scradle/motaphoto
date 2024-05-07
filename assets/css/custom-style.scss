@@ -248,6 +248,13 @@ $breakpoint__small_phone: 512px;
             align-items: center; 
             .lightbox-prev {
                 cursor: pointer;
+                transition: transform 0.3s ease;
+                top: 50%;
+                left: 1%;
+                position: absolute;
+            }
+            .lightbox-prev:hover {
+                transform: scale(1.1);
             }
             .lightbox-img {
                 display: flex;
@@ -272,7 +279,7 @@ $breakpoint__small_phone: 512px;
                 .lightbox-info {
                     display: flex;
                     justify-content: space-between;
-                    width:80%;
+                    width:100%;
                     .lightbox-img-title {
                         font-family: Poppins;
                         font-size: 14px;
@@ -286,7 +293,6 @@ $breakpoint__small_phone: 512px;
                         font-size: 14px;
                         font-weight: 400;
                         line-height: 20px;
-                        letter-spacing: 0.1em;
                         color: $color__white;
                         text-transform: uppercase;
                     }
@@ -295,7 +301,13 @@ $breakpoint__small_phone: 512px;
             
             .lightbox-next {
                 cursor: pointer;
-
+                transition: transform 0.3s ease;
+                position: absolute;
+                top: 50%;
+                right: 1%;
+            }
+            .lightbox-next:hover {
+                transform: scale(1.1);
             }
             .lightbox-toggle-cross  {
                 display: flex;
@@ -306,16 +318,16 @@ $breakpoint__small_phone: 512px;
                 color: $color__white;
                 justify-content: center;
                 position: absolute;
-                top: 6%;
-                right: 5%;
-                .line1  {
+                top: 2%;
+                right: 1%;
+                .line1 {
                     transform: translateY(8px) rotate(45deg);
                     width: 40px;
                     margin-block: 6px;
                     height: 3px;
                     background-color:  $color__white;
                 }
-                .line2   {
+                .line2  {
                     transform: translateY(-8px) rotate(-45deg);
                     width: 40px;
                     margin-block: 6px;
@@ -757,7 +769,6 @@ body {
                 padding-bottom: 3%;
                 h1 {
                     font-family: 'Space Mono';
-                    //font-size: 3vw;
                     font-size: clamp(46px, 3vw,66px);
                     font-style: italic;
                     font-weight: 500;
@@ -861,7 +872,7 @@ body {
         .single-suggestion {
             width: 80%;
             margin: 0 auto;
-            h3 {
+            h2 {
                 font-family: Space Mono;
                 font-size: 18px;
                 font-weight: 400;
@@ -891,6 +902,28 @@ body {
                     }
                     @include img-hoverbox; //mixin 
                 }
+            }
+        }
+        /*page.php*****************************************************************************************************************/
+        .page { 
+            width: 80%;
+            margin: 0 auto;
+            padding-bottom: 3%;
+            h1 {
+                font-family: 'Space Mono';
+                font-size: clamp(46px, 3vw,66px);
+                font-style: italic;
+                font-weight: 500;
+                line-height: 90px;
+                text-transform: uppercase;
+                max-width: 50%;
+            }
+            p {
+                font-family: 'Poppins';
+                font-size: 14px;
+                font-weight: 300;
+                line-height: 21px;
+                text-align: left;
             }
         }
     }// site-content
@@ -930,43 +963,21 @@ body {
     body {
         //header.php
         .site-header {
-            
             .site-branding{
                 height: 72px;
-                .logo {
-
-                }
                 .main-navigation {
-                    
                     .menu-header-menu-container {
                         display: none;
-                        ul {
-                            
-                            li {
-                                
-                            }
-                            li:hover {
-
-                            }
-                        }
                     }
                     .menu-toggle {
                         display: flex;
-                        .line {
-                            
-                        }
                     }
                 }
-                
             }
         } // header
         .site-content {
             //front-page.php
             .home-hero {
-                
-                img {
-                    
-                }
                 h1 {
                     -webkit-text-stroke: 1px $color__white;
                     top: 30%;
@@ -987,13 +998,6 @@ body {
                 .photo-gallery {
                     .img-gallery {
                         width: 100%;
-                        a {   
-                            img {
-                                
-                            }
-
-                            
-                        }
                     }
                 }
             }
@@ -1002,9 +1006,6 @@ body {
                 .load-more-btn  {
                     width: 50%;
                 }
-                .load-more-btn:hover {
-                    
-                }       
             }
             //single-photos.php
             .single-photo {
@@ -1018,9 +1019,6 @@ body {
                     display:unset;
                     h1 {
                         line-height: 50px;
-                    }
-                    p {
-                        
                     }
                 }
                 .single-photo-div {
@@ -1042,10 +1040,7 @@ body {
                     }
                     .single-contact-btn {
                         width: 100%;
-                    }
-                    .single-contact-btn:hover {
-                        
-                    }        
+                    }  
                 }
                 .single-contact-right {
                     display: none;
@@ -1064,11 +1059,6 @@ body {
                     justify-content: center;
                     .single-suggestion-solo {
                         width: 100%;
-                        .single-suggestion-img {
-                            img {
-
-                            }
-                        }
                     }
                 }
             }
@@ -1085,17 +1075,12 @@ body {
                         li {
                             padding:4% 0;
                         }
-                        li:hover {
-
-                        }
                     }
                 }
             }
             //contact-modal.php
             .contact-modal {
                 align-items: start  !important;
-                .modal-veil  {
-                }
                 .modal-content {
                     .contact-header-modal {
                         padding-top: 2%;
@@ -1113,24 +1098,11 @@ body {
                         .wpcf7-form textarea {
                             line-height: 0 !important;
                         }
-                        .wpcf7-form input[type="text"],
-                        .wpcf7-form input[type="email"] {
-                            
-                        }
                         .wpcf7-form textarea {
                             height: 200px !important;
-                        }
-                        .wpcf7-form input[type="submit"] {
-                            
-                        }
-                        .wpcf7-form input[type="submit"]:hover {
-                            
-                        }                          
+                        }   
                     } // contact-form-modal
                 }
-            }
-            .contact-modal.fadeOut {
-
             }
         } // footer
     }// body
