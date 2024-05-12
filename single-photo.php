@@ -5,16 +5,24 @@ get_header();
 <section class="single-photo">
     <div class="single-photo-txt">
         <?php //récupération ACF
-            $titre = get_field('titre');
+            $titre = get_the_title();
             echo '<h1>' . $titre . '</h1>';
             $reference = get_field('reference');
             echo '<p class="referenceValue">Référence : ' . $reference . '</p>';
-            $categorie = get_field('categorie');
-            echo '<p>Catégorie : ' . $categorie->name . '</p>';
-            $format = get_field('format');
-            echo '<p>Format : ' . $format->name . '</p>';
+            $categories = get_the_terms($post->ID, 'categorie'); 
+                if ($categories && !is_wp_error($categories)) {
+                    $categorie = array_shift($categories);
+                    echo '<p>Catégorie : ' . $categorie->name . '</p>';
+                }
+            $formats = get_the_terms($post->ID, 'formate'); 
+                if ($formats && !is_wp_error($formats)) {
+                    $format = array_shift($formats);
+                    echo '<p>Format : ' . $format->name . '</p>';
+                }
             $type = get_field('type');
-            echo '<p>Type : ' . $type->name . '</p>';
+                if ($type) {
+                    echo '<p>Type : ' . $type . '</p>';
+                }
             $annee = get_field('annee');
             echo '<p>Année : ' . $annee . '</p>';
             wp_localize_script('script', 'photo_params', [
@@ -92,11 +100,10 @@ get_header();
         $current_post_id = get_the_ID(); // Récupère l'ID de l'article actuellement affiché
         $suggested_post_ids = array(); // Initialise un tableau pour stocker les ID des suggestions déjà récupérées
 
-        $categorie = get_field('categorie');
-        $format = get_field('format');
-        $type = get_field('type');
+        $categories = get_the_terms($post->ID, 'categorie');
+        $formats = get_the_terms($post->ID, 'formate');
         // Vérification si les termes de taxonomie existent
-        if ($categorie && $format && $type) {
+        if ($categorie && $format) {
             // Recherche d'autres objets ayant les mêmes termes de taxonomie, excluant l'article actuel et les suggestions déjà récupérées
             $args = array(
                 'post_type' => 'photo',
@@ -108,14 +115,9 @@ get_header();
                         'terms'    => $categorie->name,
                     ],
                     [
-                        'taxonomy' => 'format',
+                        'taxonomy' => 'formate',
                         'field'    => 'name',
                         'terms'    => $format->name,
-                    ],
-                    [
-                        'taxonomy' => 'techno',
-                        'field'    => 'name',
-                        'terms'    => $type->name,
                     ],
                 ),
                 'post__not_in' => array($current_post_id), // Exclure l'article actuellement affiché

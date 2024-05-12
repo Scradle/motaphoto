@@ -42,13 +42,11 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 modalContent.classList.remove('fadeIn');
             }, 1000);
-            var elements = document.querySelectorAll('.wpcf7-form-control');
+            var field = document.querySelector("input[name='your-photo']");
             // Vérifiez s'il existe au moins trois éléments avec cette classe
-            if (elements.length >= 3) {
-                // Sélectionnez le troisième élément (index 2 car les index commencent à 0)
-                var troisiemeElement = elements[2];
+            if (field) {                
                 // Remplir la référence du formulaire
-                troisiemeElement.value = reference;
+                field.value = reference;
             }
         });
     }
@@ -223,7 +221,6 @@ new SlimSelect({
     select: '#select-categories',
     settings: {
         placeholderText: 'Catégories',
-        allowDeselectOption: true,
         showSearch: false,
       }
 })

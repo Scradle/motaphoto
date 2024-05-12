@@ -88,7 +88,7 @@ function create_custom_photo_post() {
         'hierarchical'       => false,
         'menu_position'      => null,
         'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' ),
-        'taxonomies'         => array( 'categorie', 'format' ,  'techno' ),
+        'taxonomies'         => array( 'categorie', 'format' ),
         'menu_icon'          => 'dashicons-format-image' // Icone du menu
     );
     register_post_type( 'photo', $args );
@@ -96,9 +96,23 @@ function create_custom_photo_post() {
 add_action( 'init', 'create_custom_photo_post' );
 
 // Création des taxonomies
-function create_categorie_taxonomy() {
+
+
+function create_photo_taxonomies() {
     $args = array(
-        'hierarchical'      => false,
+        'hierarchical'      => true,
+        'labels'            => array(
+            'name'              => 'Formats',
+            'singular_name'     => 'Format',
+        ),
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => array( 'slug' => 'formate' ),
+    );
+    register_taxonomy( 'formate', 'photo', $args );
+    $args = array(
+        'hierarchical'      => true,
         'labels'            => array(
             'name'              => 'Catégories',
             'singular_name'     => 'Catégorie',
@@ -110,39 +124,8 @@ function create_categorie_taxonomy() {
     );
     register_taxonomy( 'categorie', 'photo', $args );
 }
-add_action( 'init', 'create_categorie_taxonomy' );
+add_action( 'init', 'create_photo_taxonomies' );
 
-function create_format_taxonomy() {
-    $args = array(
-        'hierarchical'      => false,
-        'labels'            => array(
-            'name'              => 'Formats',
-            'singular_name'     => 'Format',
-        ),
-        'show_ui'           => true,
-        'show_admin_column' => true,
-        'query_var'         => true,
-        'rewrite'           => array( 'slug' => 'format' ),
-    );
-    register_taxonomy( 'format', 'photo', $args );
-}
-add_action( 'init', 'create_format_taxonomy' );
-
-function create_type_taxonomy() {
-    $args = array(
-        'hierarchical'      => false,
-        'labels'            => array(
-            'name'              => 'Types',
-            'singular_name'     => 'Type',
-        ),
-        'show_ui'           => true,
-        'show_admin_column' => true,
-        'query_var'         => true,
-        'rewrite'           => array( 'slug' => 'techno' ),
-    );
-    register_taxonomy( 'techno', 'photo', $args );
-}
-add_action( 'init', 'create_type_taxonomy' );
 
 /***********************************************************************************************************************/
 
@@ -184,7 +167,7 @@ function custom_query_ajax() {
         // Filtrer par format si sélectionné
         if (!empty($format)) {
             $args['tax_query'][] = array(
-                'taxonomy' => 'format',
+                'taxonomy' => 'formate',
                 'field'    => 'slug',
                 'terms'    => $format,
             );
@@ -223,3 +206,7 @@ function custom_query_ajax() {
 }
 add_action('wp_ajax_custom_query', 'custom_query_ajax');
 add_action('wp_ajax_nopriv_custom_query', 'custom_query_ajax');
+
+
+
+// get_the_terms( int|WP_Post $post, string $taxonomy )

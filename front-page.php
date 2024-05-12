@@ -27,7 +27,7 @@ get_header();
                 <option value="" selected hidden>&nbsp;</option>
                 <?php
                 $formats = get_terms(array(
-                    'taxonomy' => 'format',
+                    'taxonomy' => 'formate',
                     'hide_empty' => false,
                 ));
                 foreach ($formats as $format) {
