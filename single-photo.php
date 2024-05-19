@@ -4,7 +4,7 @@ get_header();
 
 <section class="single-photo">
     <div class="single-photo-txt">
-        <?php //récupération ACF
+        <?php //récupération ACF des champs descriptifs de la photo
             $titre = get_the_title();
             echo '<h1>' . $titre . '</h1>';
             $reference = get_field('reference');
@@ -32,7 +32,7 @@ get_header();
     </div>
     <div class="single-photo-div">
         <div class="single-photo-img">
-            <?php //récupération ACF
+            <?php //récupération ACF de la photo
                 $photo = get_field('photo');
                 echo '<img src="' . $photo . '" alt="Photo sélectionnée">';   
             ?>
@@ -47,7 +47,7 @@ get_header();
     </div>
     <div class="single-contact-right">
         <?php
-            // Récupération des données avec ACF
+            // Récupération des données pour accéder photos du cpt
             $next_post = get_next_post();
             $prev_post = get_previous_post();
 

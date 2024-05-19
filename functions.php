@@ -13,14 +13,18 @@ function theme_enqueue_scripts() {
     wp_enqueue_script( 'script', THEME_URI . '/assets/js/script.js', array(), ASSETS_VERSION, true );  
     wp_enqueue_script( 'ajax-script', THEME_URI . '/assets/js/ajax-script.js', array(), ASSETS_VERSION, true ); 
     //import tomSelect
-    wp_enqueue_style( 'tomSelect-css', 'https://cdnjs.cloudflare.com/ajax/libs/slim-select/2.8.2/slimselect.css');
-    wp_enqueue_script( 'tomSelect-js', 'https://cdnjs.cloudflare.com/ajax/libs/slim-select/2.8.2/slimselect.min.js'); 
+    wp_enqueue_style( 'tomSelect-css', 'http://cdnjs.cloudflare.com/ajax/libs/slim-select/2.8.2/slimselect.css');
+    wp_enqueue_script( 'tomSelect-js', 'http://cdnjs.cloudflare.com/ajax/libs/slim-select/2.8.2/slimselect.min.js'); 
 
     wp_localize_script('script', 'script_params', [
 		'ajaxurl' 					=> admin_url( 'admin-ajax.php' ),
 	]); 
     wp_localize_script('script', 'photo_params', [
 		'photo_params' 				=> 'reference',
+	]); 
+
+    wp_localize_script('ajax-script', 'script_params', [
+		'websiteurl' 					=> get_site_url(),
 	]); 
     // Enregistrer les styles
     wp_enqueue_style( 'style', THEME_URI."/style.css" , array(), ASSETS_VERSION );
@@ -89,14 +93,14 @@ function create_custom_photo_post() {
         'menu_position'      => null,
         'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' ),
         'taxonomies'         => array( 'categorie', 'format' ),
-        'menu_icon'          => 'dashicons-format-image' // Icone du menu
+        'menu_icon'          => 'dashicons-format-image', // Icone du menu
+        'show_in_rest'       => true // Permet l'accès via l'API REST
     );
     register_post_type( 'photo', $args );
 }
 add_action( 'init', 'create_custom_photo_post' );
 
 // Création des taxonomies
-
 
 function create_photo_taxonomies() {
     $args = array(
@@ -129,34 +133,48 @@ add_action( 'init', 'create_photo_taxonomies' );
 
 /***********************************************************************************************************************/
 
-// Gestion des selects 
-function custom_query_ajax() {
-    $return=[];
+// Création d'un endpoint pour API REST
+function custom_query_rest_endpoint() {
+    register_rest_route( 'custom/v1', '/query/', array(
+        'methods' => 'POST',
+        'callback' => 'custom_query_rest',
+    ) );
+}
+add_action( 'rest_api_init', 'custom_query_rest_endpoint' );
 
-    if( isset($_POST['orderby']) && isset($_POST['category']) && isset($_POST['format']) ) {
-        $orderby = $_POST['orderby'];
-        $category = $_POST['category'];
-        $format = $_POST['format'];
+// Fonction de rappel pour le endpoint de l'API REST
+function custom_query_rest( $request ) {
+    $data = $request->get_json_params();
 
-        // gère le  order by  d'origine
-        if (empty($orderby)) {  
-            $orderby = 'ASC';
+    $return = array();
+
+    if ( isset( $data['orderby'] ) && isset( $data['category'] ) && isset( $data['format'] ) ) {
+        $orderby = $data['orderby'];
+        $category = $data['category'];
+        $format = $data['format'];
+
+        $order = 'ASC';
+        if (strpos($orderby, '_DESC') !== false) {
+            $order = 'DESC';
         }
-        $offset=0;
-        if  (!empty($_POST["offset"]))  {
-            $offset= intval($_POST["offset"]);
-        }
-        //filter par date de parution 
+
+        $offset = !empty($data["offset"]) ? intval($data["offset"]) : 0;
+
         $args = array(
-            'post_type' => 'photo', 
-            'posts_per_page' => 8,  // nombre  de  post  
-            'orderby'=> 'date',
-            'order' => $orderby,
-            'offset'=>  $offset,
-         );
+            'post_type'      => 'photo',
+            'posts_per_page' => 8,
+            'order'          => $order,
+            'offset'         => $offset,
+        );
 
-        // Filtrer par catégorie si sélectionnée
-        if (!empty($category)) {
+        if (strpos($orderby, 'acf_annee') !== false) {
+            $args['meta_key'] = 'annee';
+            $args['orderby'] = 'meta_value_num';
+        } else {
+            $args['orderby'] = 'date';
+        }
+
+        if ( !empty( $category ) ) {
             $args['tax_query'][] = array(
                 'taxonomy' => 'categorie',
                 'field'    => 'slug',
@@ -164,8 +182,7 @@ function custom_query_ajax() {
             );
         }
 
-        // Filtrer par format si sélectionné
-        if (!empty($format)) {
+        if ( !empty( $format ) ) {
             $args['tax_query'][] = array(
                 'taxonomy' => 'formate',
                 'field'    => 'slug',
@@ -173,13 +190,13 @@ function custom_query_ajax() {
             );
         }
 
-        $custom_posts = new WP_Query($args);
+        $custom_posts = new WP_Query( $args ); // pour mettre en place lesd  filtres ou tris
 
-        if ($custom_posts->have_posts()) {
+        if ( $custom_posts->have_posts() ) {
             ob_start();
-            $nb_posts  = 0;
+            $nb_posts = 0;
 
-            while ($custom_posts->have_posts()) {
+            while ( $custom_posts->have_posts() ) {
                 $nb_posts++;
                 $custom_posts->the_post();
                 ?>
@@ -188,25 +205,19 @@ function custom_query_ajax() {
                         <?php $photo = get_field('photo'); ?>
                         <img class="photo-div" src="<?php echo $photo; ?>" alt="Photo <?php echo get_the_title(); ?>">
                     </div>
-                    <?php get_template_part('templates-parts/img-hoverbox'); ?> <!-- intégration hoverbox -->
+                    <?php get_template_part('templates-parts/img-hoverbox'); ?>
                 </div>
                 <?php
             }
             wp_reset_postdata();
             $gallery_content = ob_get_clean();
             $return["html"] =  $gallery_content;
-            $return["have_more_result"] = ($offset + $nb_posts < $custom_posts->found_posts) ? true : false;
+            $return["have_more_result"] = ( $offset + $nb_posts < $custom_posts->found_posts ) ? true : false;
         } else {
-            $return["html"] = 'Aucun article trouvé.';
+            $return["html"] = 'Aucune photo trouvée.';
             $return["have_more_result"] = false;
         }
     }
-    echo json_encode($return);
-    die();
+
+    return rest_ensure_response( $return );
 }
-add_action('wp_ajax_custom_query', 'custom_query_ajax');
-add_action('wp_ajax_nopriv_custom_query', 'custom_query_ajax');
-
-
-
-// get_the_terms( int|WP_Post $post, string $taxonomy )

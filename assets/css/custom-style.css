@@ -46,7 +46,7 @@
 }
 
 .ss-open-below {
-  font-family: Poppins;
+  font-family: "Poppins";
   font-size: 12px;
   font-weight: 500;
   line-height: 18px;
@@ -228,7 +228,7 @@ body .site-header .mini-menu-modal .site-header-mini {
   box-shadow: 0px 4px 14px 10px rgba(0, 0, 0, 0.031372549);
   background-color: #ffffff;
   margin: 0 auto;
-  animation: slideInRight 1s ease forwards; /* Utilisation de l'animation */
+  animation: slideInRight 1s ease forwards;
 }
 body .site-header .mini-menu-modal .site-header-mini .site-branding-mini {
   display: flex;
@@ -275,7 +275,7 @@ body .site-header .mini-menu-modal .mini-navigation {
   background-color: #E00000;
   justify-content: center;
   align-items: center;
-  animation: slideInRight 1s ease forwards; /* Utilisation de l'animation */
+  animation: slideInRight 1s ease forwards;
 }
 body .site-header .mini-menu-modal .mini-navigation ul {
   display: flex;
@@ -315,7 +315,7 @@ body .site-content .home-hero h1 {
   position: absolute;
   z-index: 2;
   top: 30%;
-  font-family: Space Mono;
+  font-family: "Space Mono";
   font-size: clamp(3vw, 7vw, 96px);
   font-style: italic;
   font-weight: 700;
@@ -344,7 +344,7 @@ body .site-content .single-gallery .selects .selects-left .select-categories {
   border-radius: 10px;
   background-color: #ffffff;
   padding: 12px;
-  font-family: Poppins;
+  font-family: "Poppins";
   font-size: 12px;
   font-weight: 500;
   line-height: 18px;
@@ -363,7 +363,7 @@ body .site-content .single-gallery .selects .selects-left .select-formats {
   border-radius: 10px;
   background-color: #ffffff;
   padding: 12px;
-  font-family: Poppins;
+  font-family: "Poppins";
   font-size: 12px;
   font-weight: 500;
   line-height: 18px;
@@ -380,7 +380,7 @@ body .site-content .single-gallery .selects .selects-right .select-dates {
   border-radius: 10px;
   background-color: #ffffff;
   padding: 12px;
-  font-family: Poppins;
+  font-family: "Poppins";
   font-size: 12px;
   font-weight: 500;
   line-height: 18px;
@@ -400,6 +400,10 @@ body .site-content .single-gallery .photo-gallery {
   gap: 15px;
   width: 100%;
   justify-content: center;
+  font-family: "Poppins";
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 21px;
 }
 body .site-content .single-gallery .photo-gallery .img-gallery {
   width: 48%;
@@ -443,7 +447,7 @@ body .site-content .single-gallery .photo-gallery .img-gallery .img-hoverbox a .
   cursor: pointer;
 }
 body .site-content .single-gallery .photo-gallery .img-gallery .img-hoverbox .img-title {
-  font-family: Poppins;
+  font-family: "Poppins";
   font-size: 14px;
   font-weight: 400;
   line-height: 21px;
@@ -454,7 +458,7 @@ body .site-content .single-gallery .photo-gallery .img-gallery .img-hoverbox .im
   text-transform: uppercase;
 }
 body .site-content .single-gallery .photo-gallery .img-gallery .img-hoverbox .img-category {
-  font-family: Space Mono;
+  font-family: "Space Mono";
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
@@ -478,7 +482,7 @@ body .site-content .load-more .load-more-btn {
   align-items: center;
   justify-content: center;
   background-color: #D8D8D8;
-  font-family: Space Mono;
+  font-family: "Space Mono";
   font-size: 12px;
   font-weight: 400;
   line-height: 17px;
@@ -572,7 +576,7 @@ body .site-content .single-photo .single-photo-div .img-hoverbox a .img-icon-eye
   cursor: pointer;
 }
 body .site-content .single-photo .single-photo-div .img-hoverbox .img-title {
-  font-family: Poppins;
+  font-family: "Poppins";
   font-size: 14px;
   font-weight: 400;
   line-height: 21px;
@@ -583,7 +587,7 @@ body .site-content .single-photo .single-photo-div .img-hoverbox .img-title {
   text-transform: uppercase;
 }
 body .site-content .single-photo .single-photo-div .img-hoverbox .img-category {
-  font-family: Space Mono;
+  font-family: "Space Mono";
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
@@ -612,7 +616,7 @@ body .site-content .single-contact .single-contact-left {
   align-items: center;
 }
 body .site-content .single-contact .single-contact-left p {
-  font-family: Poppins;
+  font-family: "Poppins";
   font-size: 14px;
   font-weight: 300;
   line-height: 21px;
@@ -622,7 +626,7 @@ body .site-content .single-contact .single-contact-left .single-contact-btn {
   align-items: center;
   justify-content: center;
   background-color: #D8D8D8;
-  font-family: Space Mono;
+  font-family: "Space Mono";
   font-size: 12px;
   font-weight: 400;
   line-height: 18px;
@@ -666,7 +670,7 @@ body .site-content .single-suggestion {
   margin: 0 auto;
 }
 body .site-content .single-suggestion h2 {
-  font-family: Space Mono;
+  font-family: "Space Mono";
   font-size: 18px;
   font-weight: 400;
   line-height: 27px;
@@ -722,7 +726,7 @@ body .site-content .single-suggestion .single-suggestion-imgs .single-suggestion
   cursor: pointer;
 }
 body .site-content .single-suggestion .single-suggestion-imgs .single-suggestion-solo .img-hoverbox .img-title {
-  font-family: Poppins;
+  font-family: "Poppins";
   font-size: 14px;
   font-weight: 400;
   line-height: 21px;
@@ -733,7 +737,7 @@ body .site-content .single-suggestion .single-suggestion-imgs .single-suggestion
   text-transform: uppercase;
 }
 body .site-content .single-suggestion .single-suggestion-imgs .single-suggestion-solo .img-hoverbox .img-category {
-  font-family: Space Mono;
+  font-family: "Space Mono";
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
@@ -865,7 +869,7 @@ body .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7-form 
 }
 body .site-footer .contact-modal .modal-content .contact-form-modal .wpcf7-form input[type=submit] {
   background-color: #D8D8D8;
-  font-family: Space Mono;
+  font-family: "Space Mono";
   font-size: 12px;
   font-weight: 400;
   line-height: 17px;
@@ -964,7 +968,7 @@ body .site-footer .lightbox .lightbox-content .lightbox-img .lightbox-info {
   width: 100%;
 }
 body .site-footer .lightbox .lightbox-content .lightbox-img .lightbox-info .lightbox-img-title {
-  font-family: Poppins;
+  font-family: "Poppins";
   font-size: 14px;
   font-weight: 400;
   line-height: 21px;
@@ -972,7 +976,7 @@ body .site-footer .lightbox .lightbox-content .lightbox-img .lightbox-info .ligh
   text-transform: uppercase;
 }
 body .site-footer .lightbox .lightbox-content .lightbox-img .lightbox-info .lightbox-img-category {
-  font-family: Space Mono;
+  font-family: "Space Mono";
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;

@@ -7,6 +7,7 @@ get_header();
     <h1>PHOTOGRAPHE EVENT</h1>
 </section>
 <section id="single-gallery" class="single-gallery">
+    <!-- ensemble des selects -->
     <div class="selects">
         <div class="selects-left">
             <select id="select-categories" class="select-categories" autocomplete="off">
@@ -37,19 +38,20 @@ get_header();
             </select>
         </div>
         <div class="selects-right">
-            <select  id="select-dates" class="select-dates" autocomplete="off">
+            <select id="select-dates" class="select-dates" autocomplete="off">
                 <option data-placeholder="true" label=" "></option>
                 <option value="" selected hidden>&nbsp;</option>
-                <option value="ASC">À partir des plus anciennes</option>
-                <option value="DESC">À partir des plus récentes</option>
+                <option value="acf_annee_ASC">À partir des plus anciennes</option>
+                <option value="acf_annee_DESC">À partir des plus récentes</option>
             </select>
         </div>
     </div>
-    <div class="photo-gallery">
+    <!-- div pour l'ensemble de la gallerie photo -->
+    <div class="photo-gallery"> 
         <?php
         $args = array(
         'post_type' => 'photo', 
-        'posts_per_page' => 8, // Pour afficher les posts
+        'posts_per_page' => 8, // Pour afficher les 8 premiers posts
         'order' => 'ASC',  // afficher par ordre ascendant
         'orderby'=> 'date',
         );
@@ -59,7 +61,7 @@ get_header();
 
             while ($custom_posts->have_posts()) : $custom_posts->the_post();
         ?>
-        <div class= "img-gallery">
+        <div class= "img-gallery"> <!-- div pour une seule photo de  la gallerie --> 
             <div class="img-gallery-solo">
                 <?php $photo = get_field('photo'); echo '<img class="photo-div" src="' . $photo . '" alt="Photo '.get_the_title().'">' ?>
             </div>
@@ -69,14 +71,13 @@ get_header();
             endwhile;
             wp_reset_postdata(); // Réinitialiser les données du post
         else :
-            echo 'Aucun article trouvé.';
+            echo 'Aucune photo trouvée.';
         endif; 
         ?>
     </div>
 </section>
-
-
-<div class="load-more">
+<!--  bouton  charger plus -->
+<div class="load-more"> 
     <button id="load-more-btn" class="load-more-btn">Charger plus</button>
 </div>
 

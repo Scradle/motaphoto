@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var specificLink = document.querySelector('.btn-modal'); // Sélectionner le lien spécifique par son identifiant
     var specificMiniLink = document.querySelector('.mini-btn-modal'); 
     var specificBtn = document.querySelector('.single-contact-btn');
-    var reference = photo_params.reference;// Récupérer  avec wp_localize
+    var reference = photo_params.reference;// Récupérer avec wp_localize
     
     // Écouter le clic sur le lien du menu
     if (specificLink) {
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 modalContent.classList.remove('fadeIn');
             }, 1000);
             var field = document.querySelector("input[name='your-photo']");
-            // Vérifiez s'il existe au moins trois éléments avec cette classe
+            // Vérifier s'il existe au moins trois éléments avec cette classe
             if (field) {                
                 // Remplir la référence du formulaire
                 field.value = reference;

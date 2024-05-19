@@ -1,7 +1,7 @@
 <div id="contact-modal" class="contact-modal">
-    <div  class="modal-veil"></div>
+    <div  class="modal-veil"></div> <!-- Pour assombrir l'écran -->
     <div class="modal-content">
-        <div class="contact-header-modal">
+        <div class="contact-header-modal"> <!-- titre Contact -->
             <img class="contact-header" src="<?php echo get_template_directory_uri() . './assets/images/contact-header.png'; ?> " alt="titre de la modale de contact">
         </div>
         <div class="contact-form-modal">
