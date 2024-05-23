@@ -51,7 +51,7 @@ add_theme_support('post-thumbnails');
 
 // Désactiver Gutenberg pour un type de publication personnalisé
 function disabled_gutenberg_cpt( $use_block_editor, $post_type ) {
-    if ( 'photos' === $post_type ) {
+    if ( 'photo' === $post_type ) {
         return false;
     }
     return $use_block_editor;
