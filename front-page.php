@@ -3,7 +3,7 @@ get_header();
 ?>
 
 <section id="home-hero" class="home-hero">
-    <img class="img-hero" src="<?php echo get_template_directory_uri() . './assets/images/img-hero.jpeg'; ?> " alt="image du hero">
+<img class="img-hero" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/img-hero.jpeg' ); ?>" alt="image du hero">
     <h1>PHOTOGRAPHE EVENT</h1>
 </section>
 <section id="single-gallery" class="single-gallery">

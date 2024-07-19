@@ -84,10 +84,10 @@ get_header();
             </div>
             <div class="arrows">
                 <a href="<?php echo get_permalink($prev_post->ID); ?>" class="prev-post">
-                    <img class="left-arrow-nav" src="<?php echo get_template_directory_uri() . '/assets/images/Icon_left_arrow.png'; ?>" alt="flêche de navigation gauche">
+                    <img class="left-arrow-nav" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/Icon_left_arrow.png'); ?>" alt="flêche de navigation gauche">
                 </a>
                 <a href="<?php echo get_permalink($next_post->ID); ?>" class="next-post">
-                    <img class="right-arrow-nav" src="<?php echo get_template_directory_uri() . '/assets/images/Icon_right_arrow.png'; ?>" alt="flêche de navigation droite">
+                    <img class="right-arrow-nav" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/Icon_right_arrow.png'); ?>" alt="flêche de navigation droite">
                 </a>
             </div>
         </div>

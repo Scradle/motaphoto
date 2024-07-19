@@ -13,8 +13,8 @@ function theme_enqueue_scripts() {
     wp_enqueue_script( 'script', THEME_URI . '/assets/js/script.js', array(), ASSETS_VERSION, true );  
     wp_enqueue_script( 'ajax-script', THEME_URI . '/assets/js/ajax-script.js', array(), ASSETS_VERSION, true ); 
     //import tomSelect
-    wp_enqueue_style( 'tomSelect-css', 'http://cdnjs.cloudflare.com/ajax/libs/slim-select/2.8.2/slimselect.css');
-    wp_enqueue_script( 'tomSelect-js', 'http://cdnjs.cloudflare.com/ajax/libs/slim-select/2.8.2/slimselect.min.js'); 
+    wp_enqueue_style( 'SlimSelect-css', 'https://cdnjs.cloudflare.com/ajax/libs/slim-select/2.8.2/slimselect.css');
+    wp_enqueue_script( 'SlimSelect-js', 'https://cdnjs.cloudflare.com/ajax/libs/slim-select/2.8.2/slimselect.min.js'); 
 
     wp_localize_script('script', 'script_params', [
 		'ajaxurl' 					=> admin_url( 'admin-ajax.php' ),
